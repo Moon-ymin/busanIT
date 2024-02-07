@@ -11,7 +11,7 @@ public class Type1 {
         char d2 = '\u0061'; // 유니코드로 표현
 
         String e = "안녕하세요"; // 문자열, 쌍따옴표 리터럴 방식(고정된 값 대입)
-        String e1 = new String("안녕하세요"); // new 키워드 객체생성에 사용, 항상 새로운 String 객체 만듦
+        // String e1 = new String("안녕하세요"); // new 키워드 객체생성에 사용, 항상 새로운 String 객체 만듦
 
         /* Primitive 원시자료형 = int, long, double, float, boolean, char
         은 new 키워드로 값을 생성할 수 없고, 리터럴 표기 방식으로만 값 세팅

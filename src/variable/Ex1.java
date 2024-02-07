@@ -1,7 +1,5 @@
 package variable;
 
-import java.sql.SQLOutput;
-
 public class Ex1 {
     public static void main(String[] args) {
         // 연습문제 1: 5와 3을 다른 숫자로 한번에 변경할 수 있게 변수로 선언
@@ -23,7 +21,7 @@ public class Ex1 {
         /* 연습문제 3: 100억을 담는 변수를 선언하고 출력
         boolean 타입의 변수를 선언하고 출력해보세요
          */
-        long num = 10000000000L;
+        long num = 10_000_000_000L;
         System.out.println( num );
         boolean c = true;
         System.out.println( c );
