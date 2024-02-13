@@ -52,6 +52,7 @@ InputStreamReader를 쓴다.
 
 ### nextInt, nextLine의 차이
 * https://st-lab.tistory.com/92
+  
         String s1 = sc.next();
         String s2 = sc.next();
         String s3 = sc.nextLine();
