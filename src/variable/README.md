@@ -48,4 +48,25 @@ InputStreamReader를 쓴다.
 
 ### 결론
 - Scanner보다 BufferedReader를 통해 문자열을 받아온 뒤, Integer.parseInt()같은 파싱
-함수를 통해 타입 변환해주는 것이 특히 성능(시간) 경쟁인 알고리즘에서 훨씬 선호된다. 
+함수를 통해 타입 변환해주는 것이 특히 성능(시간) 경쟁인 알고리즘에서 훨씬 선호된다.
+
+### nextInt, nextLine의 차이
+* https://st-lab.tistory.com/92
+  
+        String s1 = sc.next();
+        String s2 = sc.next();
+        String s3 = sc.nextLine();
+        String s4 = sc.nextLine();
+
+        System.out.println(s1); Cat
+        System.out.println(s2); is
+        System.out.println(s3); 줄바꿈이 포함되어버림
+        System.out.println(s4); perfect
+
+        ~ 맞는 방법 ~
+        String s1 = sc.next();
+        String s2 = sc.next();
+        sc.nextLine(); 개행이 s3에 담기지 않도록 개행만 입력시킴
+        String s3 = sc.nextLine();
+        String s4 = sc.nextLine();
+  
