@@ -18,7 +18,7 @@ public class Ex3 {
 
         if ( hour <= 2 ) {
             fee = 5000;
-        } else if ( 2 < hour && hour <= 24 ) {
+        } else if ( hour <= 24 ) {
             hour -= 2;
             fee = hour * 60 / 30 * 1000 + 5000;
         } else {
