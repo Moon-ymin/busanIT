@@ -16,3 +16,5 @@ public class Method6 {
         return number;
     }
 }
+
+// 메소드 리턴 값을 메인 메소드의 변수에 담는 것!
