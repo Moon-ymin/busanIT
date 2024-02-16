@@ -20,7 +20,7 @@ public class Ex7Ref {
         boolean wordCompleted = false;
 
 
-        while (tries < MAX_TRIES) {
+        while (tries < MAX_TRIES && !wordCompleted) {
             System.out.print("단어 추측: ");
             printDisplayArray(displayArray); // 현재까지 맞춘 단어의 상태 출력하는 메서드
             String guess = scanner.nextLine();  // 사용자로부터 글자 추측 받기
