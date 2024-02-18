@@ -14,30 +14,36 @@ start와 end 사이의 모든 짝수의 합을 계산하는 프로그램을 작�
 끝 정수: 15
 4 + 6 + 8 + 10 + 12 + 14 = 54
 */
- */
 public class Quiz2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("두 정수를 입력하세요");
 
-        System.out.printf("시작 정수 : ");
+        // 시작 정수 입력
+        System.out.print("시작 정수: ");
         int start = sc.nextInt();
-        System.out.printf("끝 정수 : ");
+
+        // 끝 정수 입력
+        System.out.print("끝 정수: ");
         int end = sc.nextInt();
 
-        int[] numbers = new int[end - start +1];
-        int sum = 0;
-        String s = "";
 
-        for (int i=start; i<end; i++) {
-            if (i % 2 == 0) {
-                numbers[i] = i;
-                sum += i;
-                s += i + "+";
+        // 짝수의 합 계산
+        int evenSum = 0;
+        String equation = ""; // 수식을 저장할 변수
+
+        for (int i = start; i <= end; i++) {
+            if (i % 2 == 0) { // 짝수인 경우에만 더함
+                evenSum += i;
+                if (!equation.isEmpty()) {
+                    equation += " + "; // 처음이 아닌 경우에는 '+'를 더함
+                }
+                equation += i; // 수식에 현재 짝수 추가
             }
         }
 
-        System.out.println(s);
+        // 결과 출력
+        System.out.println(equation + " = " + evenSum);
 
 
     }
