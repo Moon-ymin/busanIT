@@ -1,5 +1,5 @@
 ## 메모리 할당
-https://dmzld.tistory.com/40
+- https://dmzld.tistory.com/40
 - Student 클래스 할당 예시
   ![img.png](class0/img.png)
 
