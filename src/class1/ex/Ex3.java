@@ -26,29 +26,13 @@ public class Ex3 {
         Book book1 = new Book("점프 투 자바","위키북스","01",true);
         Book book2 = new Book("자바 알고리즘","위키북스");
 
-        borrowBook(book2);
-        returnBook(book2);
+        book.borrowBook();
+        book2.returnBook();
 
         Book[] books = { book, book1, book2 };
         for ( Book b : books ) {
-            printInfo(b);
+           b.printInfo();
         }
 
-    }
-    static boolean borrowBook(Book book) {
-        if (book.isAvailable == true) {
-            book.isAvailable = false;
-            return true;
-        } else {
-            System.out.println("대여가 불가능합니다");
-            return false;
-        }
-    }
-    static void returnBook(Book book) {
-        book.isAvailable = true;
-    }
-    static void printInfo(Book book){
-        System.out.printf("제목 : %s, 저자 : %s, 국제표준도서번호 : %s, 대여 가능 여부 : %b\n",
-                book.title, book.author, book.isbn, book.isAvailable);
     }
 }

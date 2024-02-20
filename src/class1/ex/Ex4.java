@@ -8,16 +8,11 @@ public class Ex4 {
     2. main 메서드에서 Board 객체를 생성하는 네 가지 방법을 모두 사용해보세요.
      */
     public static void main(String[] args) {
-        Board board1 = new Board("java study","coding");
-        Board board2 = new Board("python study", "coding","이순신");
-        Board board3 = new Board("machine learning","study","홍길동","20240219");
-        Board board4 = new Board("AI","study","이몽룡","2023",3);
+        Board board = new Board("게시글1", "내용", "글쓴이", "2024-02-20", 0);
+        Board board1 = new Board("게시글1", "내용", "글쓴이", "2024-02-20" );
+        Board board2 = new Board("게시글1", "내용", "글쓴이"  );
+        Board board3 = new Board("게시글1", "내용"  );
 
-        Board[] boards = {board1, board2, board3, board4};
-        for (Board b : boards) {
-            System.out.printf("title : %s | content : %s | writer : %s | date : %s | hits : %d\n",
-                    b.title, b.content, b.writer, b.date, b.hitCount );
-        }
     }
 }
 
@@ -30,14 +25,33 @@ class Board {
 
     Board(String title, String content) {
         this(title, content, "로그인한 회원아이디", "현재 컴퓨터 날짜", 0);
+/*
+        this.title = title;
+        this.content = content;
+        this.writer = "로그인한 회원아이디";
+        this.date = "현재 컴퓨터 날짜";
+        this.hitCount = 0;
+*/
     }
 
     Board(String title, String content, String writer) {
-        this(title, content, writer,"현재 컴퓨터 날짜",0 );
+        this(title, content, writer, "현재 컴퓨터 날짜", 0);
+/*
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.date = "현재 컴퓨터 날짜";
+        this.hitCount = 0;
+*/
     }
 
     Board(String title, String content, String writer, String date) {
         this(title, content, writer, date, 0);
+/*        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.date = date;
+        this.hitCount = 0;*/
     }
 
     public Board(String title, String content, String writer, String date, int hitCount) {
