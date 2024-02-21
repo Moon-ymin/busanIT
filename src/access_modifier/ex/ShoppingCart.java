@@ -1,5 +1,8 @@
 package access_modifier.ex;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ShoppingCart {
     Item[] items;
     int itemCount;

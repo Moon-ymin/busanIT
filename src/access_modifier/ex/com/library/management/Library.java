@@ -1,8 +1,8 @@
 package access_modifier.ex.com.library.management;
 
 public class Library {
-    Book[] books;
-    int index;
+    private Book[] books;
+    private int index;
 
     public Library(int capacity) {
         books = new Book[capacity];
