@@ -13,4 +13,8 @@ public class Data {
     public int getField() {
         return field;
     }
+
+    public void setField(int field) {
+        this.field = field;
+    }
 }
