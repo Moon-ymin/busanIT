@@ -2,11 +2,11 @@ public class ShoppingCart {
     Item[] items;
     int itemCount;
 
-    ShoppingCart() {
+    public ShoppingCart() {
         items = new Item[10];
     }
     public void addItem( Item item ){
-        if ( itemCount >= 10 ) {
+        if ( itemCount >= items.length ) {
             System.out.println("장바구니가 가득 찼습니다.");
         } else {
             items[itemCount] = item;

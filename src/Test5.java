@@ -6,11 +6,13 @@ public class Test5 {
 
         ProductOrder[] orders = { order1, order2, order3 };
 
-        for ( ProductOrder o : orders ) {
+        printOrder( orders );
+        getTotalPayment( orders );
+    }
+    static void printOrder( ProductOrder[] orders ){
+        for (ProductOrder o : orders) {
             System.out.printf("상품명: %s, 가격 :%d, 수량 : %d\n", o.productName, o.price, o.quantity);
         }
-
-        getTotalPayment( orders );
     }
     static void getTotalPayment( ProductOrder[] orders ){
         int total = 0;
