@@ -1,31 +1,22 @@
 package polymorphism.ex.ex4;
 
-import access_modifier.second.C;
-
 public class Main {
+
     public static void main(String[] args) {
-        Cookie g = new GingerbreadCookie();
-        Cookie c = new ChocoCookie();
-        Cookie s = new StrawberryCookie();
+        Cookie gingerBread = new GingerBread();
+        Cookie chocoCookie = new ChocoCookie();
+        Cookie strawberryCookie = new StrawberryCookie();
 
-        g.run();
-        g.jump();
+        Cookie[] cookies = {gingerBread, chocoCookie, strawberryCookie};
 
-        s.run();
-        s.jump();
-        specialSkill(s);
-
-        c.run();
-        c.jump();
-        specialSkill(c);
-    }
-    static void specialSkill(Cookie cookie){
-        if (cookie instanceof StrawberryCookie) {
-            StrawberryCookie s1 = (StrawberryCookie) cookie;
-            s1.specialSkill();
-        } else if (cookie instanceof ChocoCookie) {
-            ChocoCookie c1 = (ChocoCookie) cookie;
-            c1.specialSkill();
+        for (Cookie cookie : cookies) {
+            cookie.run();
+            cookie.jump();
+            // instanceof 연산자를 통한 타입 체크
+            if (cookie instanceof GingerBread) {
+            } else {
+                cookie.specialSkill();
+            }
         }
     }
 }
