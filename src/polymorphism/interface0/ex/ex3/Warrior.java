@@ -7,6 +7,6 @@ public class Warrior extends GameCharacter implements Attackable{
 
     @Override
     public void attack(GameCharacter gameCharacter) {
-        System.out.println("전사가 "+gameCharacter.name+"을(를) 공격합니다. 강한 공격!");
+        System.out.println(name+"가 "+gameCharacter.name+"을(를) 공격합니다. 강한 공격!");
     }
 }
