@@ -6,7 +6,7 @@ public class Mage extends GameCharacter implements Attackable{
     }
     @Override
     public void attack(GameCharacter gameCharacter) {
-        System.out.println("마법사가 "+gameCharacter.name+"에게 마법 공격을 합니다. 불의 화살!");
+        System.out.println(name+"가 "+gameCharacter.name+"에게 마법 공격을 합니다. 불의 화살!");
     }
 
 
