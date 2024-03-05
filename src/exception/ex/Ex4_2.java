@@ -11,7 +11,7 @@ public class Ex4_2 {
         int correctAnswers = 0;
 
         for (int i = 0; i < questions.length; i++) {
-            System.out.println("문제 " + (i+1) + ": " + questions[i]);
+            System.out.println("문제 " + (i + 1) + ": " + questions[i]);
             System.out.print("답: ");
             String inputAnswer = scanner.nextLine();
             try {
@@ -37,12 +37,6 @@ public class Ex4_2 {
             throw new InvalidInputException("유효하지 않은 답변입니다.");
         }
     }
-
-
-    class InvalidInputException extends Exception {
-        public InvalidInputException(String message) {
-            super(message);
-        }
-    }
 }
+
 
