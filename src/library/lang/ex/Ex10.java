@@ -19,14 +19,15 @@ public class Ex10 {
             emails[i] = data[2];
         }
 
-
+        // 1번
         System.out.println("전체 사용자 수: "+users.length);
+        // 2번
         System.out.println("사용자 정보:");
         for (int i = 0; i < users.length; i++) {
             System.out.printf("- 이름: %s, 나이: %s. 이메일: %s\n",
                     names[i], ages[i], emails[i]);
         }
-
+        // 3번
         System.out.println("\"gmail.com\" 도메인 사용자:");
         for (int i = 0; i < users.length; i++) {
             if ( emails[i].contains("gmail.com") ){
@@ -34,6 +35,7 @@ public class Ex10 {
             }
         }
 
+        // 4번
         int maxage = Integer.parseInt( ages[0] );
 
         for (String s : ages) {
@@ -43,6 +45,7 @@ public class Ex10 {
         System.out.println("가장 나이가 많은 사용자:");
         System.out.println("- 이름: "+ names[index]+", 나이: "+maxage);
 
+        // 5번
         System.out.print("이름에 \"김\"이 포함된 사용자 수: ");
         int kim = 0;
         for (String s : names){
