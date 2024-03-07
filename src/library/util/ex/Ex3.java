@@ -9,15 +9,15 @@ public class Ex3 {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("원금: ");
-        BigInteger Principal = new BigInteger(sc.nextLine());
-        System.out.println("연이율: ");
+        BigDecimal Principal = new BigDecimal(sc.nextLine());
+        System.out.print("연이율: ");
         BigDecimal AnnualInterestRate = new BigDecimal(sc.nextLine());
-        System.out.println("기간: ");
-        BigInteger TermInYear = new BigInteger(sc.nextLine());
+        System.out.print("기간(년 단위): ");
+        int TermInYear = sc.nextInt();
 
-        BigInteger num = BigInteger.valueOf(1).add(AnnualInterestRate);
-        BigInteger total = Principal * ( AnnualInterestRate ).pow(TermInYear);
+        BigDecimal num = BigDecimal.ONE.add(AnnualInterestRate);
+        BigDecimal total = Principal.multiply( num.pow(TermInYear) );
 
-        System.out.println("최종 금액: " + total);
+        System.out.printf("최종 금액: %.2f", total);
     }
 }
