@@ -8,6 +8,7 @@ public class Button {
     }
 
     public void click() {
+        if (listener == null) { return; }
         listener.onClick();
     }
 }
