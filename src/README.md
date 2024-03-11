@@ -263,3 +263,11 @@
        1. Checked Exception : 컴파일 시점에 체크되는 예외
        2. Unchecked Exception : 실행 시점(Runtime)에 발생하는 예외
           - 주로 RuntimeException 클래스에서 상속받음
+
+## Generic 의 장점
+1. 타입 안정성(Type Safety)를 가짐
+   - 컴파일 시점에 타입 체크를 수행할 수 있어, ClassCastException을 방지
+2. 코드 재사용성이 향상
+   - 다양한 타입의 데이터에 대해 재사용 가능하여, 코드의 양을 줄인다.
+3. 타입 캐스팅 감소
+   - 캐스팅 연산자를 사용하지 않아서 깔끔하고 가독성 향상 

@@ -51,7 +51,7 @@
 13. 패키지
     - package, import
 14. 상속
-    - 부모 생성자 호출
+    - 부모 생성자 호출 super()
     - 오버라이딩(최우선순위, 메서드 재정의)
     - 타입변환 (업캐스팅, 다운캐스팅)
     - 다형성
@@ -70,3 +70,24 @@
     - 본문이 선언과 동시에 정의 -> 인터페이스 구현
     - 람다식으로 연결 
 19. 예외처리 
+    - Error, Exception
+    - checked 예외(compile), unchecked 예외(runtime)
+    - try - catch - finally
+    - throws 예외 떠넘기기, throw new 예외 발생시키기, 사용자 정의 예외 
+20. Object 클래스
+    - 모든 클래스의 조상
+    - toString, equals, hashCode, getClass
+21. String 클래스
+    - 문자열 : immutable
+    - 문자열 메서드 : charAt, indexOf, length,
+    - replace, substring, trim, split, toLowerCase, toUpperCase,
+    - StringBuilder, StringBuffer (변경 가능하게 문자열을 조작 mutable)
+22. Class 클래스
+    - 클래스에 대한 메타 정보를 가져옴, 조작, 관리 ⇒ 리플렉션
+23. Math, Random 클래스
+24. Wrapper 클래스
+    - 기본 타입을 객체로 포장하는 클래스
+25. 날짜와 시간 관련 클래스
+    - Date, Calender
+    - LocalDateTime, LocalDate, LocalTime
+    - Period, Duration, DateTimeFormatter
