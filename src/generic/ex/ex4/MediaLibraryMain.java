@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 class MediaLibrary<T extends Media>{
-    List<T> mediaList;
+    List<T> mediaList = new ArrayList<>();
 
-    public MediaLibrary() {
-        mediaList = new ArrayList<>();
-    }
     void addMedia(T media){
         mediaList.add(media);
     }

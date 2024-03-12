@@ -14,9 +14,8 @@ public class Book implements Media{
         return title;
     }
 
-    public String getAuthor() {
-        return author;
+    @Override
+    public String getDetails() {
+        return "Author : "+author;
     }
-
-
 }

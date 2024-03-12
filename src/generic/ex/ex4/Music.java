@@ -13,7 +13,8 @@ public class Music implements Media{
     public String getTitle() {
         return title;
     }
-    public String getArtist(){
-        return artist;
+    @Override
+    public String getDetails() {
+        return "Artist: " + artist;
     }
 }

@@ -13,7 +13,9 @@ public class Movie implements Media{
     public String getTitle() {
         return title;
     }
-    public String getDirector(){
-        return director;
+
+    @Override
+    public String getDetails() {
+        return "Director : " + director;
     }
 }
