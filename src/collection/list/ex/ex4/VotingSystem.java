@@ -7,51 +7,46 @@ import java.util.Scanner;
 public class VotingSystem {
     private static Scanner sc = new Scanner(System.in);
     public static boolean isFinish = false;
-    List<Candidate> candidates;
+    private List<Candidate> candidates;
     public VotingSystem() {
         candidates = new ArrayList<>();
-        candidates.add(new Candidate("고길동", 0));
-        candidates.add(new Candidate("둘리", 0));
-        candidates.add(new Candidate("마이콜", 0));
-        candidates.add(new Candidate("희동이", 0));
+        candidates.add(new Candidate("고길동"));
+        candidates.add(new Candidate("둘리"));
+        candidates.add(new Candidate("마이콜"));
+        candidates.add(new Candidate("희동이"));
     }
-    public static void receiveVote() {
 
-    }
-    public static boolean startVoting() { // 투표 프로세스 구현
+    public void startVoting() { // 투표 프로세스 구현
+        System.out.println("후보 목록:");
+        for (int i = 0; i < candidates.size(); i++) {
+            System.out.println((i+1) + ". " + candidates.get(i).getName());
+        }
+
         System.out.print("투표하고 싶은 후보의 번호를 입력하세요 (종료하려면 0을 입력) : ");
-        int number = sc.nextInt();
-        if (number <= candidates.size()) {
-            switch (number){
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 0:
-                    System.out.println("투표를 종료합니다.");
-                    isFinish = true;
-                    break;
+        while (true) {
+            int choice = sc.nextInt();
+            if (choice == 0) {
+                break;
+            } else if (choice < 0 || choice > candidates.size()) {
+                System.out.println("잘못된 번호입니다. 다시 입력하세요.");
+            } else {
+                candidates.get(choice - 1).receiveVote();
+                System.out.println("투표하고 싶은 후보의 번호를 입력하세요 (종료하려면 0을 입력):");
             }
-            return isFinish;
-        } else {
-            System.out.println("없는 후보입니다.");
         }
 
 
     }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        List<Candidate> candidate = new VotingSystem();
-
-        System.out.println("후보 목록:"+ candidate );
-        while(!isFinish) {
-            isFinish = startVoting();
+    public void printResults() {
+        System.out.println("투표 결과:");
+        for (Candidate candidate : candidates) {
+            System.out.println(candidate);
         }
+    }
+    public static void main(String[] args) {
+        VotingSystem votingSystem = new VotingSystem();
+        votingSystem.startVoting();
+        votingSystem.printResults();
     }
 
 }
