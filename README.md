@@ -94,3 +94,7 @@
     - LocalDateTime, LocalDate, LocalTime
     - Period, Duration, DateTimeFormatter
 26. [Generic](src/generic)
+    - <T> 타입 파라미터를 정의하여 타입이 필요한 자리에 유연한 타입 제공
+    - 제네릭 클래스, 제네릭 메서드(리턴 타입 앞에 선언)
+    - 제한된 타입 파라미터 <T extends 타입>
+    - 와일드 카드 <? extends 타입> <? super 타입>
