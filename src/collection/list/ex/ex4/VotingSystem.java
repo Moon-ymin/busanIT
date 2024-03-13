@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class VotingSystem {
     private static Scanner sc = new Scanner(System.in);
-    public static boolean isFinish = false;
     private List<Candidate> candidates;
     public VotingSystem() {
         candidates = new ArrayList<>();
@@ -31,11 +30,9 @@ public class VotingSystem {
                 System.out.println("잘못된 번호입니다. 다시 입력하세요.");
             } else {
                 candidates.get(choice - 1).receiveVote();
-                System.out.println("투표하고 싶은 후보의 번호를 입력하세요 (종료하려면 0을 입력):");
+                System.out.print("투표하고 싶은 후보의 번호를 입력하세요 (종료하려면 0을 입력):");
             }
         }
-
-
     }
     public void printResults() {
         System.out.println("투표 결과:");
