@@ -44,9 +44,9 @@
     - 패키지
     - [enum](src/enum0)
 11. [인스턴스 멤버와 정적 멤버](src/static0)
-    - static
-    - this 키워드
-    - final, 싱글톤
+    - `static`
+    - `this` 키워드
+    - `final`, 싱글톤
 12. [접근 제어자](src/access_modifier)
     - (public > protected > default > private)
     - Getter, Setter 메서드 
@@ -82,12 +82,12 @@
     - throws 예외 떠넘기기, throw new 예외 발생시키기, 사용자 정의 예외 
 20. [Object 클래스](src/library/lang)
     - 모든 클래스의 조상
-    - toString, equals, hashCode, getClass
+    - `toString`, `equals`, `hashCode`, `getClass`
 21. [String 클래스](src/library/lang)
     - 문자열 : immutable
-    - 문자열 메서드 : charAt, indexOf, length,
-    - replace, substring, trim, split, toLowerCase, toUpperCase,
-    - StringBuilder, StringBuffer (변경 가능하게 문자열을 조작 mutable)
+    - 문자열 메서드 : `charAt`, `indexOf`, `length`,
+    - `replace`, `substring`, `trim`, `split`, `toLowerCase`, `toUpperCase`,
+    - `StringBuilder`, `StringBuffer` (변경 가능하게 문자열을 조작 mutable)
 22. [Class 클래스](src/library/lang)
     - 클래스에 대한 메타 정보를 가져옴, 조작, 관리 ⇒ 리플렉션
 23. [Math, Random 클래스](src/library/util)
@@ -95,8 +95,8 @@
     - 기본 타입을 객체로 포장하는 클래스
 25. [날짜와 시간 관련 클래스]((src/library/util))
     - Date, Calender
-    - LocalDateTime, LocalDate, LocalTime
-    - Period, Duration, DateTimeFormatter
+    - `LocalDateTime`, `LocalDate`, `LocalTime`
+    - `Period`, `Duration`, `DateTimeFormatter`
 26. [Generic](src/generic)
     - <T> 타입 파라미터를 정의하여 타입이 필요한 자리에 유연한 타입 제공
     - 제네릭 클래스, 제네릭 메서드(리턴 타입 앞에 선언)
