@@ -66,6 +66,10 @@
     - 다중 구현(implements)
 17. [중첩 클래스](src/nested)
     - 클래스 내부의 클래스
+      - 주로 객체에서 상위▪하위모델 있을 때
+        - [참고](https://sjh836.tistory.com/145) 
+        1. 향상된 캡슐화
+        2. 좋은 가독성과 유지보수성
     - 정적 멤버, 인스턴스 멤버, 로컬 멤버
 18. [익명 객체](src/nested/anonymous_interface)
     - 이름이 없는 객체
