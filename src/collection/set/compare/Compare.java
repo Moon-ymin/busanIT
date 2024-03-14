@@ -1,4 +1,4 @@
-package collection.set;
+package collection.set.compare;
 
 import java.util.TreeSet;
 
