@@ -45,7 +45,7 @@ public class Student implements Comparable<Student> {
 
     @Override
     public int compareTo(Student other) {
-        // 기본 정렬 = 학번 순
+        // 기본 정렬 = 학번 순(오름차순)
         return this.studentNo - other.studentNo;
     }
 }

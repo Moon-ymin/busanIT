@@ -38,7 +38,7 @@ public class StudentMain {
             System.out.println(s);
         }
 
-        TreeSet[] treeSets = {
+        TreeSet[] treeSets = {  // 비교기를 배열에 넣기
                 new TreeSet<Student>(
                         new StudentComparator(
                                 StudentComparator.SortBy.AGE,
