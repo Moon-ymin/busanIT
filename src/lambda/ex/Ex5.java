@@ -23,13 +23,14 @@ public class Ex5 {
         // 리스트의 각 요소에 Consumer.accept() 적용
         attendees.forEach(welcome);
 
+        // - Predicate<Person>를 사용하여 특정 조건(예: 나이가 18세 이상)을 만족하는 참석자를 필터링
         Predicate<Person> isAdult = (person) -> person.getAge() >= 18;
         for(Person attendee : attendees){
             if (isAdult.test(attendee)){
                 System.out.println(attendee.getName() + ", 18세 이상");
             }
         }
-
+        // Function<Person, String>을 사용하여 참석자의 이름을 반환하세요.
         Function<Person, String> getNameFunction = Person::getName; // person -> person.getName();
         Supplier<List<String>> inviteListSupplier =
                 ArrayList::new; // 생성자 참조

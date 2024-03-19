@@ -102,4 +102,19 @@
     - 제네릭 클래스, 제네릭 메서드(리턴 타입 앞에 선언)
     - 제한된 타입 파라미터 <T extends 타입>
     - 와일드 카드 <? extends 타입> <? super 타입>
-27. 
+27. [컬렉션 프레임워크](src/collection)
+    - 알려진 자료구조를 사용해서 데이터를 C(생성), R(조회), U(수정), D(삭제)
+    - java.util 패키지 Collection -> List, Set
+    - `List` : 순서가 있고(index), 중복 저장 가능
+    - `Set` : 순서 없고, 중복 없음
+    - `Map` : 키와 값으로 구성된 Entry, Key는 중복 안됨(Set)
+    - `Iterator`, `Comparable`, `Comparator`
+    - Stack(LIFO), Queue(FIFO)
+    - `Collections`, `Arrays`
+28. [람다식](src/lambda)
+    - 함수형 프로그래밍(Functional Programming, FP)
+    - () -> {} : 매개변수 -> 본문
+    - 함수형 인터페이스 : SAM(단 하나의 추상 메서드를 가짐)
+    - 매개변수가 있는 람다식, 없는 람다식, 반환값이 있는 람다식, 없는 람다식
+    - 메서드 참조(Method Reference), 생성자 참조 (클래스 이름::메서드이름) (클래스::new)
+29. [스트림 API](src/stream)
