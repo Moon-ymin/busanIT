@@ -3,6 +3,8 @@ package stream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Stream6 {
     // 요소 정렬
@@ -23,5 +25,17 @@ public class Stream6 {
                 .sorted(Comparator.reverseOrder())
                 .map(Student::getName)
                 .forEach(System.out::println);
+
+        // 최종 연산 : collect()
+        List<String> nameList = studentList.stream()
+                .sorted()
+                .map(Student::getName)
+                .collect(Collectors.toList());
+
+        Set<Integer> scoreSet = studentList.stream()
+                .sorted()
+                .map(Student::getScore)
+                .collect(Collectors.toSet());
+
     }
 }
