@@ -26,7 +26,7 @@ public class Ex12 {
                         Collectors.averagingDouble(Employee::salary)));
 
 
-        System.out.println("Developer 평균 급여: " + roleSalary.get("Developer"));
-        System.out.println("Manager 평균 급여: " + roleSalary.get("Manager"));
+        System.out.println("Developer 평균 급여: " + roleSalary.get("Developer").intValue());
+        System.out.println("Manager 평균 급여: " + roleSalary.get("Manager").intValue());
     }
 }

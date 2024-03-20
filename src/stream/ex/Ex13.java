@@ -20,11 +20,11 @@ public class Ex13 {
 
         Map<String, Double> cityPop = cityPopulations.stream()
                 .collect(Collectors.groupingBy(CityPopulation::city,
-                        Collectors.averagingInt(CityPopulation::population))
+                        Collectors.averagingDouble(CityPopulation::population))
                 );
 
-        System.out.printf("New York 평균 인구: %.1f명\n", cityPop.get("New York"));
-        System.out.printf("Chicago 평균 인구: %.1f명\n", cityPop.get("Chicago"));
-        System.out.printf("Los Angeles 평균 인구: %.1f명\n", cityPop.get("Los Angeles"));
+        System.out.printf("New York 평균 인구: %d명\n", cityPop.get("New York").intValue());
+        System.out.printf("Chicago 평균 인구: %d명\n", cityPop.get("Chicago").intValue());
+        System.out.printf("Los Angeles 평균 인구: %d명\n", cityPop.get("Los Angeles").intValue());
     }
 }
