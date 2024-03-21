@@ -36,5 +36,13 @@ public class Thread4 {
         new Thread(() -> {
             System.out.println(Thread.currentThread().getName() + " 스레드");
         }).start();
+
+        // 생성자에서 이름을 주는 방법
+        String threadName = new Thread("스레드 이름").getName();
+        System.out.println("threadName = " + threadName);
+
+        new Thread(() -> {
+            System.out.println(Thread.currentThread().getName() + " 스레드");
+        }, "스레드이름2").start();
     }
 }
