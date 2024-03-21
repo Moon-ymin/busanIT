@@ -102,6 +102,30 @@ public class Stream11 {
         System.out.println("over25Student = " + over25Student);
         System.out.println("under25Student = " + under25Student);
 
+        // summarizing : 숫자 요소에 대한 요약 통계 제공
+        //        // 반환 값으로 SummaryStatistics 타입을 받아서
+        //        // 숫자에 관한 기본 통계들을 받을 수 있음.
+        //        // 기본타입
+        IntSummaryStatistics intSummaryStatistics = IntStream.rangeClosed(1, 100)
+                .summaryStatistics();
+
+        double average = intSummaryStatistics.getAverage();
+        int max = intSummaryStatistics.getMax();
+        int min = intSummaryStatistics.getMin();
+        long sum = intSummaryStatistics.getSum();
+        long count = intSummaryStatistics.getCount();
+
+        System.out.println("count = " + count);
+        System.out.println("min = " + min);
+        System.out.println("max = " + max);
+        System.out.println("average = " + average);
+        System.out.println("sum = " + sum);
+
+        // 객체타입
+        IntSummaryStatistics collect = studentList.stream()
+                .collect(Collectors.summarizingInt(Student::age));
+
+
     }
     record Student(String name, String gender, int age){}
     // record : 불변(immutable) 객체를 쉽게 생성할 수 있도록 하는 유형의 클래스
