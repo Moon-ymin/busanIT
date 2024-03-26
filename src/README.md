@@ -408,3 +408,42 @@
     - 소유 및 대기 조건 제거 : 한 스레드가 자원을 내려놓으면 됨
     - 비선점 조건 제거 : 선점할 수 있게 하면 됨 (OS)
     - 순환 대기 조건 제거 : 자원에 순서를 할당하고, 순차적으로 자원 요청 
+
+## 입출력 스트림
+- 데이터가 흐름을 통해서 출발지에서 도착지로 흘러서 이동하는 매개
+  - 출발지 : 키보드, 파일, 프로그램, 네트워크 ... (출력 스트림)
+  - 도착지 : 모니터, 파일, 프로그램, 네트워크 ... (입력 스트림)
+- 입력(Input) 스트림 : 데이터를 읽고, 파일에서 데이터를 읽거나, 네트워크에서 데이터를 받거나
+- 출력(Output) 스트림 : 데이터를 쓰고, 파일에 데이터를 쓰거나, 네트워크에 데이터를 보내거나
+
+- 스트림 타입
+  - byte 스트림 : 그림, 동영상, 문자 등 모든 데이터를 입출력할 때 사용
+  - 문자 스트림 : 문자 데이터를 처리하는 스트림
+- java.io 패키지에서 제공
+  - 바이트 스트림
+    - 최상위 클래스
+      - InputStream
+      - OutputStream
+    - 하위 클래스
+      - XXXInputStream
+      - XXXOutputStream
+  - 문자 스트림
+    - 최상위 클래스
+      - Reader
+      - Writer
+    - 하위 클래스
+      - XXXReader
+      - XXXWriter
+- 자바 8버전의 스트림 API 와는 다름
+
+## 보조 스트림
+1. 문자열 변환 스트림 : InputStreamReader, OutputStreamWriter
+    - 바이트스트림 -> 문자열 스트림, 바이트의 데이터의 특정 문자 인코딩을 텍스트로 읽거나 쓸 수 있음.
+2. 성능향상 스트림 : BufferedInputStream, BufferedOutputStream, BufferedReader, BufferedWriter
+    - 데이터를 처리할 때 내부적으로 버퍼를 사용해서 데이터를 임시 저장하여 입출력 효율을 높임.
+3. 기본타입 스트림 : DataInputStream, DataOutputStream
+    - 기본 타입(int, long, double..)을 바이트 스트림으로 쓰거나 읽거나 할 수 있음
+4. 프린트 스트림 : PrintStream
+    - print(), println(), printf() 메서드를 지원하는 보조 스트림
+5. 객체 직렬화 스트림 : ObjectInputStream, ObjectOutputStream
+   - 객체를 직렬화(객체 -> 바이트 스트림), 역직렬화(바이트 스트림 -> 객체)
