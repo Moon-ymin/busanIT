@@ -42,9 +42,9 @@ public class Ex2 {
                 cnt++;
                 System.out.println(line);
             }
-            fr.close();
         }
         bw.close();
+        fr.close();
         System.out.printf("분석 완료, 총 %d개의 에러 로그를 찾았습니다.\n", cnt);
 
 
