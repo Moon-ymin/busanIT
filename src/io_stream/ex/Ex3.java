@@ -2,81 +2,56 @@ package io_stream.ex;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Ex3 {
     /*
-    연습문제: 텍스트 기반 채팅 로그 분석기
+    문제: 사용자 입력 문자열을 파일에 저장하기
 
     문제 설명
-    채팅 애플리케이션의 로그 파일을 분석하는 프로그램을 작성해야 합니다.
-    이 프로그램은 주어진 텍스트 파일 형식의 채팅 로그에서 각 사용자별로
-    메시지를 얼마나 보냈는지 분석하여 결과를 "chatSummary.txt" 파일에 저장해야 합니다.
+    사용자로부터 문자열 입력을 받아 이를 "output.txt"라는 이름의 파일에 저장하는 자바 프로그램을 작성하세요. 사용자가 "종료"라는 단어를 입력할 때까지 프로그램은 계속해서 사용자의 입력을 받습니다. 모든 입력은 파일에 순차적으로 저장되어야 하며, 각 입력은 파일의 새로운 줄에 기록됩니다. 사용자가 "종료"를 입력하면 프로그램은 실행을 마치고 파일에 지금까지 입력받은 내용을 모두 저장해야 합니다.
 
     요구 사항
-    - 로그 파일 형식: "chat.log" 로그 파일은 각 줄마다 하나의 메시지를 기록하며,
-        각 메시지는 다음 형식을 따릅니다: [시간] 사용자명: 메시지
-    - 결과 파일: "chatSummary.txt" 파일에는 각 사용자별로 보낸 메시지의 총 개수를 기록합니다.
-        사용자별로 한 줄에 기록하며, 형식은 다음과 같습니다: 사용자명: 메시지 개수
+    - 사용자 입력 받기: 사용자로부터 문자열을 계속해서 입력 받으세요. 입력은 터미널(콘솔)을 통해 이루어집니다.
+    - 파일에 저장: 사용자가 입력한 문자열을 "output.txt" 파일에 저장하세요. 사용자가 새 문자열을 입력할 때마다, 이 문자열은 파일의 새로운 줄에 추가되어야 합니다.
+    - 프로그램 종료 조건: 사용자가 "종료"라고 입력하면, 프로그램은 더 이상 입력을 받지 않고 종료됩니다. 이때, 지금까지 입력받은 모든 문자열이 "output.txt" 파일에 저장되어 있어야 합니다.
 
-    chat.log
+    실행예시
     ===
-    [08:45] 길동씨: 좋은 아침이에요!
-    [08:47] 무대리: 모두 좋은 아침입니다.
-    [08:49] 박진수: 오늘 회의 시간에 늦지 않게 출발해야겠어요.
-    [08:50] 길동씨: 네, 안전하게 오세요.
-    [09:00] 박진수: 저도 도착했습니다. 회의실 어디에요?
-    [09:01] 강감찬: 2층 회의실 3번입니다.
-    [09:03] 길동씨: 아, 커피 한잔 마시고 올라갈게요. 누구 커피 드릴까요?
-    [09:04] 무대리: 저는 아메리카노 부탁드립니다.
-    [09:05] 박진수: 저는 라떼로 부탁드려요. 감사합니다!
-    [09:07] 강감찬: 저도 아메리카노로 해주세요.
-    [09:10] 길동씨: 알겠습니다. 잠시 후에 회의실에서 뵐게요.
-    [09:15] 무대리: 모두 회의 준비는 잘 되어가나요?
-    [09:17] 박진수: 네, 거의 다 준비된 것 같아요.
-    [09:20] 길동씨: 커피 다 준비했습니다. 회의 시작해요!
+    텍스트를 입력하세요 ('종료' 입력 시 프로그램 종료):
+    > 안녕하세요
+    > 자바 파일 입출력 연습입니다.
+    > 종료
 
-    chatSummary.txt
+    output.txt
     ===
-    박진수: 4
-    길동씨: 5
-    무대리: 3
-    강감찬: 2
+    안녕하세요
+    자바 파일 입출력 연습입니다.
      */
     public static void main(String[] args) throws IOException {
-        BufferedReader fr = new BufferedReader(
-                new FileReader("src/io_stream/ex/chat.log"));
-        BufferedWriter bw = new BufferedWriter(
-                new FileWriter("src/io_stream/ex/charSummary.txt"));
-        HashMap<String, Integer> speakerCnt = new HashMap<>();
-        int
+        String inputFileName = "src/io_stream/ex/chat.log";
+        String outputFileName = "src/io_stream/ex/chatSummary.txt";
 
-        while (true) {
-            String line = fr.readLine();
-            int cnt =
-            if (line == null) break;
-            else {
-                String person = line.substring(8,11);
-                for (int i = 0; i < ; i++) {
-                    if (speakerCnt.containsKey(person)) {
-                        speakerCnt.put(person, speakerCnt.get(person)+1);
-                    } else {
-                        speakerCnt.put(person,1);
-                    }
-                }
-            }
+        // (이름, 횟수) 맵
+        Map<String, Integer> speakerCnt = new HashMap<>();
+
+        // chat.log 파일 읽기
+        BufferedReader br = new BufferedReader(new FileReader(inputFileName));
+        String line;
+        while( (line = br.readLine()) != null ) {
+            String userName = line.substring(8,11);
+            speakerCnt.put(userName, speakerCnt.getOrDefault(userName, 0) + 1);
+            // getOrDefault : 찾는 키가 존재한다면 찾는 키의 값을 반환하고 없다면 기본 값을 반환하는 메서드
+
         }
-        speakerCnt.forEach(
-                (name, cnt) -> {
-                    try {
-                        bw.write(name + ": " + cnt);
-                        bw.newLine();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-        );
-        bw.close();
-        fr.close();
+        br.close();
 
+        // 결과 chatSummary.txt 쓰기
+        BufferedWriter bw = new BufferedWriter(new FileWriter(outputFileName));
+        for (Map.Entry<String, Integer> entry : speakerCnt.entrySet()) {
+            bw.write(entry.getKey() + ": " + entry.getValue());
+            bw.newLine();
+        }
+        bw.close();
     }
 }

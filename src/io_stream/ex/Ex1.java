@@ -1,6 +1,8 @@
 package io_stream.ex;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Ex1 {
     /*
@@ -41,6 +43,5 @@ public class Ex1 {
 
         br.close();
         bw.close();
-
     }
 }
