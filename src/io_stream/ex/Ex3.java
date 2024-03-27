@@ -54,4 +54,32 @@ public class Ex3 {
         }
         bw.close();
     }
+    /* 수업에서 진행한 코드
+    public static void main(String[] args) {
+        String filePath = ("src/io_stream/ex/chat.log");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath));){
+            String line;
+            // 종료 조건을 축약하여 while 조건문에 대입
+            while ((line = br.readLine()) != null) {
+                // String line = br.readLine();
+                // if (line == null) break;
+                System.out.println(line);
+                String[] split = line.split(":");
+                // { "[08", "45] 길동씨", "좋은 아침이에요!" }
+                String s = split[1];
+                System.out.println(s);
+                String[] split1 = s.split("]");
+                // { "45", " 길동씨" }
+                String s1 = split1[1];
+                System.out.println("s1 = " + s1);
+                String trim = s1.trim();
+                System.out.println("trim = " + trim);
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+     */
 }
