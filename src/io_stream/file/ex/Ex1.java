@@ -11,6 +11,8 @@ public class Ex1 {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean isFinish = false;
+        String currentPath = "src/io_stream/file/ex/";
+
         while(!isFinish) {
             System.out.println("1: 정보 저장, 2: 정보 조회");
             int choice = sc.nextInt();
@@ -24,13 +26,13 @@ public class Ex1 {
                     String age = sc.next();
 
                     String filename = name + ".user";
-                    FileWriter writer = new FileWriter(filename);
+                    FileWriter writer = new FileWriter(currentPath + filename);
                     writer.write(name + "\n" + email + "\n" + age);
                     writer.close();
                     System.out.println("정보 저장 완료.");
                     break;
                 case 2:
-                    File folder = new File(".");
+                    File folder = new File(currentPath);
                     File[] files = folder.listFiles(
                             (dir, fileName) -> fileName.endsWith(".user"));
                     if (files != null && files.length > 0) {
