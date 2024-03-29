@@ -45,4 +45,38 @@ public class Ex2 {
         is.close();
 
     }
+    /* 수업에서 한 코드
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("웹 페이지 URL을 입력하세요 : ");
+        String urlString = sc.nextLine();
+
+        try{
+            URL url = new URL(urlString);
+            URLConnection conn = url.openConnection();
+
+            // URL 연결에서 기반 InputStream 을 반환하여
+            // 보조 스트림 연결
+            BufferedReader br =
+                new BufferedReader(
+                new InputStreamReader(
+                    conn.getInputStream()));
+
+            String line;
+            while ( (line = br.readLine()) != null ) {
+                if ( line.contains("<title>")) {
+                    int startIndex = line.indexOf("<title>") + 7;
+                    int endIndex = line.indexOf("</title>");
+
+                    String title = line.substring(startIndex, endIndex);
+                    System.out.println("웹 페이지 제목 : " + title);
+                }
+            }
+        } catch (MalformedURLException e) {
+            System.out.println("잘못된 URL 형식입니다.");
+        } catch (IOException e) {
+            System.out.println("입출력에 문제가 발생하였습니다.");
+        }
+    }
+     */
 }
