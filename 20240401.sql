@@ -1,40 +1,41 @@
--- 데이터 선택하여 활용 
-select * from producttbl;
-select productName, cost from producttbl;
+-- 데이터 선택하여 활용
+SELECT * FROM PRODUCTTBL;
+SELECT MEMBERNAME, MEMBERADDRESS FROM MEMBERTBL;
+SELECT * FROM MEMBERTBL WHERE MEMBERNAME = '지운이';
 
 -- 테이블의 생성과 삭제
-create table `my test_tbl` (id int); 
-drop table `my test_tbl`;
+CREATE TABLE `my test_tbl` (id INT);
+DROP TABLE `my test_tbl`;
 
 -- 인덱스 생성 (데이터 삽입 및 비교)
-create table index_tbl (
+CREATE TABLE INDEX_TBL (
 	first_name varchar(14),
-    last_name varchar(14),
-    hired_date date
+    last_name varchar(16),
+    hire_date date
     );
-    
-insert into index_tbl
-	select first_name, last_name, hire_date 
-    from employees.employees
-    limit 500;
-    
-select * from index_tbl;
+INSERT INTO INDEX_TBL
+	SELECT first_name, last_name, hire_date
+    FROM employees.employees
+	LIMIT 500;
+SELECT * FROM INDEX_TBL;
 
-select * from index_tbl 
-where first_name = 'Mary';
+SELECT * FROM index_tbl WHERE first_name = 'Mary';
 
-create index idx_index_tbl_firstName 
-on index_tbl(first_name);
+CREATE INDEX IDX_INDEX_TBL_FIRSTNAME
+	ON INDEX_TBL(FIRST_NAME);
 
--- 사용자 뷰 만들기
-create view uv_member_tbl 
-as select memberName, memberAddress from membertbl;
+-- 사용자 뷰 만들기    
+CREATE VIEW uv_member_tbl
+AS
+	SELECT memberName, memberAddress
+    FROM membertbl;
 
-select * from uv_member_tbl;
+SELECT * FROM uv_member_tbl;
 
 -- 테이블 데이터 삭제 및 복구
-delete from producttbl;
-select * from producttbl;
+DELETE FROM producttbl;
+
+SELECT * FROM producttbl;
 
 
 
