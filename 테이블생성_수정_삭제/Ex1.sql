@@ -1,3 +1,5 @@
+create schema libraryManagement;
+use librarymanagement;
 -- 문제 1:** **`Books`** 테이블을 생성하세요.
 /* 
 	1. **Books 테이블**: 도서 정보를 저장합니다.
