@@ -27,4 +27,5 @@ create view view_category_film_count as
 SHOW FULL TABLES IN sakila
 WHERE TABLE_TYPE LIKE 'VIEW';
 -- 문제 7 : 생성한 모든 뷰를 삭제하세요.
-Drop 
+Drop VIEW actor_info,customer_list,film_list, nicer_but_slower_film_list, sales_by_film_category, 
+sales_by_store, staff_list;
