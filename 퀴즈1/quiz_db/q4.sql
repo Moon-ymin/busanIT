@@ -10,8 +10,7 @@
 3. EXECUTE 문을 매개변수를 바인딩하여 실행하세요.
 4. 준비된 문장을 메모리 해제하세요. */
 
-delimiter $$
-
+DELIMITER $$
 create procedure GetEmployeeSalariesHist(in emp_id int)
 begin
     set @emp_no = emp_id;
@@ -20,7 +19,7 @@ begin
     prepare stmt from @sql;
     execute stmt using @emp_no;
     deallocate prepare stmt;
+END$$
+DELIMITER ;
 
-end $$
-delimiter;
-
+call GetEmployeeSalariesHist(10001);

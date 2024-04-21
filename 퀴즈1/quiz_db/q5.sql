@@ -25,16 +25,15 @@ CREATE TABLE order_logs (
 3. order_logs 테이블에 자동으로 트리거가 작동하였는지 확인하세요.
 */
 
-delimiter $$
-
+DELIMITER $$
 create trigger after_insert
 after insert on orders
 for each row
 begin
     insert into order_logs (order_id, log_message)
     values (NEW.order_id, concat('New order : ', NEW.customer_name, ' | 날짜 : ', NEW.order_date, ' | 주문량 : ', NEW.order_amount));
-end $$
-delimiter;
+END$$
+DELIMITER ;
 
 insert into orders (customer_name, order_date, order_amount)
 values ('Jane Smith', '2024-04-21', 10);
