@@ -647,3 +647,49 @@
     2. 처리 : 서버에서 클라이언트의 요청을 받아 처리
     3. 응답
     4. 표시 : 클라이언트에서 서버에서 받은 데이터를 적절하게 사용자에게 표시 
+
+## JDBC (Java DataBase Connectivity)
+- 자바 애플리케이션을 통해 DB에 접근하고 조작할 수 있게 해주는 인터페이스
+- API가 데이터베이스에 독립적이어서 다양한 종류의 DBMS에 연결할 수 있는 방법 제공
+- 구성 클래스
+  1. DriverManager : 데이터베이스 드라이버를 로드하고 연결을 관리
+  2. Connection : 데이터베이스와의 연결
+  3. Statement : SQL 명령문 실행하는 인터페이스
+  4. PreparedStatement : 동적 SQL 문 (SQL 인젝션 공격 방지 보안)
+  5. ResultSet : SQL 질의 결과를 저장하는 객체
+- 작동 순서
+  1. JDBC 드라이버를 로드
+  2. 연결 생성 (URL, Username, password)
+  3. SQL 문 실행
+  4. 결과 처리
+  5. 연결 종료
+### JDBC 드라이브 설치
+  - JDBC 드라이버를 각 제조사 홈페이지에서 검색하여 다운로드 받고
+  - jar 파일을 적절한 위치에 저장
+  - MySQL 의 경우 Installer 에서 Connector/J 를 설치하거나 
+    - C:\Program Files (x86)\MySQL\Connector J 8.0
+    - 경로에서 `mysql-connector-j-버전.jar`
+  - 제조사 홈페이지에서 다운로드 받거나 
+  - jar 파일을 적절한 위치에 저장
+    - lib 디렉토리 생성 후 [복사-붙여넣기]
+    - Intellij 의 경우 jar 파일에 우클릭 → Add as Library → 확인
+### JDBC 주요 클래스 사용 순서 분석
+  - `java.sql` 라이브러리 
+  1. Driver 로딩하기
+     - DriverManager 클래스의 getConnection 메서드를 사용
+     - Connection 객체가 생성
+  2. Statement 객체
+     - 정적인 쿼리에 사용
+     - 복잡하지 않은 간단한 쿼리 등에 사용
+     - 메서드
+       - executeQuery (String sql) : 검색(SELECT)문 사용, ResultSet 을 반환
+       - executeUpdate (String sql) : DML(Insert, Update, Delete) 사용
+         - 테이블에 변경된 행의 개수를 반환
+       - close() : 객체 자원 해제
+     - 객체를 즉시 해제하지 않으면 메모리에 무시할 수 없는 공간이 남게되기 때문에 꼭 자원 해제
+  3. ResultSet 객체
+     - SELECT 질의 결과를 행단위로 읽어오는 객체
+       - next() : boolean 반환, 행 정보가 존재하면 커서 이동 후 true 반환
+         - 더 이상 읽을 정보가 없으면 false
+       - get*Type*(숫자) : 컬럼의 순서를 해당 타입으로 반환
+       - get*Type*(이름) : 해당 컬럼명을 해당 타입으로 반환
