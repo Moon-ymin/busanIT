@@ -20,18 +20,12 @@ public class Ex3 {
     email: 새 이메일 주소
     입력받은 정보를 데이터베이스의 users 테이블에 업데이트합니다.
      */
-    public static String isNull(String str){
-        if (str == null){
-            return
-        }
-    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String url = "jdbc:mysql://localhost:3306/jdbc";
         String user = "root";
         String password = "1234";
 
-        String[] str = new String
         System.out.print("ID를 입력하세요 : ");
         String userId = sc.nextLine();
         System.out.print("사용자 이름을 입력하세요: ");
@@ -39,7 +33,8 @@ public class Ex3 {
         System.out.print("비밀번호를 입력하세요: ");
         String userPassword = sc.nextLine();
         System.out.print("나이를 입력하세요: ");
-        String age = sc.nextLine();
+        Integer age = sc.nextInt();
+        sc.nextLine();
         System.out.print("이메일 주소를 입력하세요: ");
         String email = sc.nextLine();
 
@@ -62,10 +57,7 @@ public class Ex3 {
             pstmt.setInt(4, age);
             pstmt.setString(5, email);
             pstmt.setString(6, userId);
-            for (int i = 1; i <= 6 ; i++) {
-                String insert =
-                pstmt.setString(i, );
-            }
+
             // 실행 및 행 개수 반환
             int rows = pstmt.executeUpdate();
             if (rows == 1) {
