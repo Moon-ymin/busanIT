@@ -21,7 +21,7 @@ public class Jdbc9 {
                 .append("title = ?, ")
                 .append("content = ?, ")
                 .append("filename = ?, ")
-                .append("filedate = ? ")
+                .append("filedata = ? ")
                 .append("WHERE boardNo = ?")
                 .toString();
 

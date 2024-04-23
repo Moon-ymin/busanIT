@@ -121,4 +121,4 @@
 30. [I/O 스트림](src/io_stream)
 31. [스레드](src/stream)
 32. [네트워크](src/network)
-33. [JDBC]
+33. [JDBC](src/jdbc)

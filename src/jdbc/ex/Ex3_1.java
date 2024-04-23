@@ -18,8 +18,11 @@ public class Ex3_1 {
         System.out.print("비밀번호를 입력하세요: ");
         String userPassword = sc.nextLine();
         System.out.print("나이를 입력하세요: ");
-        Integer age = sc.nextInt();
-        sc.nextLine();
+        String ageS = sc.nextLine();
+        Integer age = null; // 기본값을 null로 설정
+        if (!ageS.isEmpty()) {
+            age = Integer.parseInt(ageS);
+        }
         System.out.print("이메일 주소를 입력하세요: ");
         String email = sc.nextLine();
 
@@ -67,11 +70,12 @@ public class Ex3_1 {
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, userName);
-            pstmt.setString(2, userPassword);
-            pstmt.setInt(3, age);
-            pstmt.setString(4, email);
-            pstmt.setString(5, userId);
+            pstmt.setString(1, userId);
+            pstmt.setString(2, userName);
+            pstmt.setString(3, userPassword);
+            pstmt.setInt(4, age);
+            pstmt.setString(5, email);
+            pstmt.setString(6, userId);
 
             // 실행 및 행 개수 반환
             int rows = pstmt.executeUpdate();
