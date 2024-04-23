@@ -1,6 +1,7 @@
 package jdbc.ex;
 
 import jdbc.board.Board;
+import jdbc.object.User;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -100,7 +101,7 @@ public class Ex5 {
 
     public void mainMenu() {
         System.out.println("----------------------------------------------------------------");
-        System.out.println("메인메뉴 : 1. Create | 2. Read | 3. Clear | 4. Exit");
+        System.out.println("메인메뉴 : 1. Create | 2. Read | 3. Clear | 4. Join | 5. Exit");
         System.out.print("메뉴선택 : ");
         String menuNo = scanner.nextLine();
 
@@ -108,7 +109,8 @@ public class Ex5 {
             case "1" -> create();
             case "2" -> read();
             case "3" -> clear();
-            case "4" -> exit();
+            case "4" -> join();
+            case "5" -> exit();
         }
     }
 
@@ -305,5 +307,51 @@ public class Ex5 {
     public static void main(String[] args) {
         Ex5 boardEx = new Ex5();
         boardEx.list();
+    }
+
+
+    private void join() {
+        System.out.println("[새 사용자 입력]");
+        System.out.print("아이디 : ");
+        String newId = scanner.nextLine();
+        System.out.print("이름 : ");
+        String newname = scanner.nextLine();
+        System.out.print("비밀번호 : ");
+        String newpassword = scanner.nextLine();
+        System.out.print("나이 : ");
+        Integer newage = scanner.nextInt();
+        scanner.next();
+        System.out.print("이메일 : ");
+        String newemail = scanner.nextLine();
+
+        User user = new User(newId, newname, newpassword, newage, newemail);
+
+        // 보조 메뉴
+        System.out.println("------------------------------------------");
+        System.out.println("보조메뉴: 1.OK | 2. Cancel");
+        System.out.print("메뉴선택 : ");
+        String menu = scanner.nextLine();
+
+        // 보조메뉴 1 선택한 경우
+        if (menu.equals("1")) {
+            String sql = """
+                    INSERT INTO users (userId, userName, password, age, email)
+                    VALUES (?, ?, ?, ?, ?);
+                    """;
+
+            try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, user.getUserId());
+                pstmt.setString(2, user.getUserName());
+                pstmt.setString(3, user.getPassword());
+                pstmt.setInt(4, user.getAge());
+                pstmt.setString(5, user.getEmail());
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                exit();
+            }
+        }
+        list();
     }
 }
