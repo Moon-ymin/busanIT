@@ -201,6 +201,8 @@ public class Ex7 {
                             update(board);
                         } else if (menu.equals("2")) {
                             delete(board);
+                        } else {
+                            list();
                         }
                     }
                 } // 로그인 안했으면 그냥 바로 목록 출력하러 감
@@ -230,8 +232,10 @@ public class Ex7 {
         if (!isLogin) {
             System.out.print("글쓴이 : ");
             writer = scanner.nextLine();
+            if (!writer.isEmpty()) board.setWriter(writer);
+        } else {
+            writer = findName();
         }
-        if (!writer.isEmpty()) board.setWriter(writer);
 
         // 보조 메뉴 출력
         System.out.println("------------------------");
@@ -310,7 +314,7 @@ public class Ex7 {
     }
 
     public static void main(String[] args) {
-        Ex5 boardEx = new Ex5();
+        Ex7 boardEx = new Ex7();
         boardEx.list();
     }
 
@@ -374,8 +378,8 @@ public class Ex7 {
         if ( menu.equals("1") ) {
             // 비밀번호 대조
             String loginsql = """
-                    SELECT password
-                    FROM USER
+                    SELECT userId, password
+                    FROM USERS
                     WHERE userId = ?
                     """;
 
@@ -384,9 +388,16 @@ public class Ex7 {
                 pstmt.setString(1, id);
                 ResultSet rs = pstmt.executeQuery();
 
-                // 게시물 목록 출력
-                isLogin = true;
-                list();
+                while (rs.next()) {
+                    User user = new User(
+                            rs.getString("userId"),
+                            rs.getString("password"));
+                    if ( user.getPassword().equals(pw) ) {
+                        // 게시물 목록 출력
+                        isLogin = true;
+                        list();
+                    }
+                }
 
             } catch (SQLException e){
                 System.out.println("비밀번호가 일치하지 않습니다.");
@@ -404,7 +415,7 @@ public class Ex7 {
     private String findName() {
         // 아이디로 사용자 이름 받아오기
         String namesql = """
-                    SELECT userName FROM USER WHERE userId = ?
+                    SELECT userId, userName, password FROM USERS WHERE userId = ?
                     """;
 
         try ( PreparedStatement pstmt = conn.prepareStatement(namesql)) {
@@ -412,9 +423,14 @@ public class Ex7 {
             pstmt.setString(1, id);
             ResultSet rs = pstmt.executeQuery();
 
-            // 결과 처리
-            User user = new User(rs.getString(1));
-            return user.getUserName();
+            // 결과가 존재하는 경우에만 처리
+            if (rs.next()) {
+                String userName = rs.getString("userName");
+                return userName;
+            } else {
+                return "해당 사용자를 찾을 수 없습니다.";
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
             exit();

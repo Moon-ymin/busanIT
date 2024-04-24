@@ -320,7 +320,7 @@ public class Ex5 {
         String newpassword = scanner.nextLine();
         System.out.print("나이 : ");
         Integer newage = scanner.nextInt();
-        scanner.next();
+        scanner.nextLine();
         System.out.print("이메일 : ");
         String newemail = scanner.nextLine();
 

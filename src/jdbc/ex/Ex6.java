@@ -294,7 +294,7 @@ public class Ex6 {
     }
 
     public static void main(String[] args) {
-        Ex5 boardEx = new Ex5();
+        Ex6 boardEx = new Ex6();
         boardEx.list();
     }
 
@@ -309,7 +309,7 @@ public class Ex6 {
         String newpassword = scanner.nextLine();
         System.out.print("나이 : ");
         Integer newage = scanner.nextInt();
-        scanner.next();
+        scanner.nextLine();
         System.out.print("이메일 : ");
         String newemail = scanner.nextLine();
 
@@ -358,8 +358,8 @@ public class Ex6 {
         if ( menu.equals("1") ) {
             // 비밀번호 대조
             String loginsql = """
-                    SELECT password
-                    FROM USER
+                    SELECT userId, password
+                    FROM USERS
                     WHERE userId = ?
                     """;
 
@@ -368,9 +368,16 @@ public class Ex6 {
                 pstmt.setString(1, id);
                 ResultSet rs = pstmt.executeQuery();
 
-                // 게시물 목록 출력
-                isLogin = true;
-                list();
+                while (rs.next()) {
+                    User user = new User(
+                            rs.getString("userId"),
+                            rs.getString("password"));
+                    if ( user.getPassword().equals(pw) ) {
+                        // 게시물 목록 출력
+                        isLogin = true;
+                        list();
+                    }
+                }
 
             } catch (SQLException e){
                 System.out.println("비밀번호가 일치하지 않습니다.");
