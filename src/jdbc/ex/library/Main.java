@@ -1,115 +1,112 @@
 package jdbc.ex.library;
-/*
-### 연습문제: 도서 관리 시스템 구현
-#### 요구사항
-도서관에서 도서 대여 및 관리를 위한 시스템을 개발하려고 합니다. 다음 요구사항을 만족하는 도서 관리 시스템을 DAO 패턴을 이용하여 구현해보세요.
 
-1. 도서 정보 관리: 도서는 제목, 저자, 출판년도, 장르, ISBN (국제표준도서번호)를 속성으로 가집니다.
-2. 기능 요구사항:
-   - 도서 추가: 새로운 도서를 시스템에 추가할 수 있어야 합니다.
-   - 도서 삭제: 특정 ISBN을 기준으로 도서를 삭제할 수 있어야 합니다.
-   - 도서 수정: 도서의 정보를 수정할 수 있어야 합니다. 주로 제목, 저자, 출판년도, 장르를 수정할 수 있어야 합니다.
-   - 도서 조회:
-     - 모든 도서 목록 조회
-     - ISBN으로 특정 도서 조회
-     - 저자나 제목으로 도서 검색
-3. 데이터베이스 요구사항:
-   - MySQL 데이터베이스 사용
-   - 도서 정보를 저장할 테이블 구성
-   - 적절한 SQL 쿼리를 작성하여 CRUD 연산 수행
+import jdbc.dao.DatabaseUtil;
 
-#### 데이터베이스 테이블 구조 예시
-```sql
-CREATE TABLE books (
-    isbn VARCHAR(20) PRIMARY KEY,
-    title VARCHAR(100),
-    author VARCHAR(100),
-    publish_year INT,
-    genre VARCHAR(50)
-);
+import java.util.Scanner;
 
-- 데이터베이스 연결 관리: 사용 후 데이터베이스 연결을 안전하게 닫아 리소스 누수가 없도록 해야 합니다.
-- 테스트: 개발한 기능을 충분히 테스트하여 실제 동작을 검증합니다.
-
-
---- 실행 시나리오 예시 ---
-
-```
-### 도서 관리 시스템 ###
-1. 도서 추가
-2. 도서 삭제
-3. 도서 수정
-4. 도서 조회
-5. 종료
-메뉴 선택: 1
-
-[도서 추가]
-ISBN 입력: 978-3-16-148410-0
-제목 입력: 코스모스
-저자 입력: 칼 세이건
-출판년도 입력: 1980
-장르 입력: 과학
-도서가 추가되었습니다.
-
-### 도서 관리 시스템 ###
-1. 도서 추가
-2. 도서 삭제
-3. 도서 수정
-4. 도서 조회
-5. 종료
-메뉴 선택: 4
-
-[도서 목록]
-ISBN: 978-3-16-148410-0, 제목: 코스모스, 저자: 칼 세이건, 출판년도: 1980, 장르: 과학
-
-### 도서 관리 시스템 ###
-1. 도서 추가
-2. 도서 삭제
-3. 도서 수정
-4. 도서 조회
-5. 종료
-메뉴 선택: 3
-
-[도서 수정]
-수정할 도서의 ISBN 입력: 978-3-16-148410-0
-새 제목 입력: 코스모스 업데이트
-새 저자 입력: 칼 세이건
-새 출판년도 입력: 1981
-새 장르 입력: 과학
-도서 정보가 업데이트되었습니다.
-
-### 도서 관리 시스템 ###
-1. 도서 추가
-2. 도서 삭제
-3. 도서 수정
-4. 도서 조회
-5. 종료
-메뉴 선택: 4
-
-[도서 목록]
-ISBN: 978-3-16-148410-0, 제목: 코스모스 업데이트, 저자: 칼 세이건, 출판년도: 1981, 장르: 과학
-
-### 도서 관리 시스템 ###
-1. 도서 추가
-2. 도서 삭제
-3. 도서 수정
-4. 도서 조회
-5. 종료
-메뉴 선택: 2
-
-[도서 삭제]
-삭제할 도서의 ISBN 입력: 978-3-16-148410-0
-도서가 삭제되었습니다.
-
-### 도서 관리 시스템 ###
-1. 도서 추가
-2. 도서 삭제
-3. 도서 수정
-4. 도서 조회
-5. 종료
-메뉴 선택: 5
-
-시스템을 종료합니다.
- */
 public class Main {
+    private static Scanner sc = new Scanner(System.in);
+    private static bookDao bookdao;
+
+    public static void main(String[] args) {
+        bookdao = new bookDaoImpl(DatabaseUtil.getConnection());
+
+        while(true) {
+            System.out.print("""
+                    ### 도서 관리 시스템 ###
+                    1. 도서 추가
+                    2. 도서 삭제
+                    3. 도서 수정
+                    4. 도서 조회
+                    5. 종료
+                        메뉴 선택:
+                    """);
+            String menu = sc.nextLine();
+
+            switch (menu) {
+                case "1" -> insert();
+                case "2" -> delete();
+                case "3" -> update();
+                case "4" -> select();
+                case "5" -> {DatabaseUtil.close(); return; }
+            }
+        }
+    }
+
+    private static void insert() {
+        // [도서 추가]
+        //ISBN 입력: 978-3-16-148410-0
+        //제목 입력: 코스모스
+        //저자 입력: 칼 세이건
+        //출판년도 입력: 1980
+        //장르 입력: 과학
+        //도서가 추가되었습니다.
+        System.out.println("[도서 추가]");
+        System.out.print("ISBN 입력: ");
+        String isbn = sc.nextLine();
+        System.out.print("제목 입력: ");
+        String title = sc.nextLine();
+        System.out.print("저자 입력: ");
+        String author = sc.nextLine();
+        System.out.print("출판년도 입력: ");
+        Integer year = sc.nextInt();
+        sc.nextLine();
+        System.out.print("장르 입력: ");
+        String genre = sc.nextLine();
+
+        bookDto bookdto = new bookDto(isbn, title, author, year, genre);
+        bookdao.insert(bookdto);
+        System.out.println("도서가 추가되었습니다.");
+    }
+    private static void delete() {
+        // [도서 삭제]
+        //삭제할 도서의 ISBN 입력: 978-3-16-148410-0
+        //도서가 삭제되었습니다.
+        System.out.println("[도서 삭제]");
+        System.out.print("삭제할 도서의 ISBN 입력: ");
+        String id = sc.nextLine();
+        if (bookdao.getBookByIsbn(id) != null ) {
+            bookdao.delete(id);
+            System.out.println("도서가 삭제되었습니다.");
+        } else {
+            System.out.println("존재하는 도서가 없습니다.");
+        }
+    }
+    private static void update() {
+        // [도서 수정]
+        //수정할 도서의 ISBN 입력: 978-3-16-148410-0
+        //새 제목 입력: 코스모스 업데이트
+        //새 저자 입력: 칼 세이건
+        //새 출판년도 입력: 1981
+        //새 장르 입력: 과학
+        //도서 정보가 업데이트되었습니다.
+        System.out.println("[도서 수정]");
+        System.out.print("수정할 도서의 ISBN 입력: ");
+        String isbn = sc.nextLine();
+        bookDto book = bookdao.getBookByIsbn(isbn);
+
+        if (book != null) {
+            System.out.print("새 제목 입력: ");
+            String title = sc.nextLine();
+            if (!title.isEmpty()) book.setTitle(title);
+            System.out.print("새 저자 입력: ");
+            String author = sc.nextLine();
+            if (!author.isEmpty()) book.setTitle(author);
+            System.out.print("새 출판년도 입력: ");
+            Integer year = sc.nextInt();
+            sc.nextLine();
+            if (year != null) book.setPublish_year(year);
+            System.out.print("새 장르 입력: ");
+            String genre = sc.nextLine();
+            if (!genre.isEmpty()) book.setTitle(genre);
+
+            bookdao.update(book);
+            System.out.println("도서 정보가 업데이트되었습니다.");
+        } else {
+            System.out.println("존재하지 않는 도서입니다.");
+        }
+    }
+    private static void select() {
+
+    }
 }
