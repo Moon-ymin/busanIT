@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"javadoc.ex.Ex1","c":"MathArrayUtil","l":"average(int[])"},{"p":"javadoc.ex.Ex1","c":"MathArrayUtil","l":"max(int[])"},{"p":"javadoc.ex.Ex1","c":"MathArrayUtil","l":"min(int[])"},{"p":"javadoc.ex.Ex1","c":"MathArrayUtil","l":"sum(int[])"}];updateSearchResults();
