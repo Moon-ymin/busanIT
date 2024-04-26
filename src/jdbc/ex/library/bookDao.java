@@ -9,7 +9,7 @@ public interface bookDao {
     void update(bookDto book);  // 도서 수정
     void delete(String isbn);   // 도서 삭제
     List<bookDto> getAllbooks();
-    bookDto getBookByAuthor(String author);
-    bookDto getBookByTitle(String title);
+    List<bookDto> getBookByAuthor(String author);
+    List<bookDto> getBookByTitle(String title);
 
 }

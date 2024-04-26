@@ -64,7 +64,8 @@ public class bookDaoImpl implements bookDao {
     }
 
     @Override
-    public bookDto getBookByAuthor(String author) {
+    public List<bookDto> getBookByAuthor(String author) {
+        List<bookDto> books = new ArrayList<>();
         String sql = """
                 SELECT * FROM books
                 WHERE author = ?
@@ -74,23 +75,25 @@ public class bookDaoImpl implements bookDao {
             pstmt.setString(1, author);
             ResultSet rs = pstmt.executeQuery();
 
-            if (rs.next()) {
-                return new bookDto(
+            while (rs.next()) {
+                bookDto book = new bookDto(
                         rs.getString("isbn"),
                         rs.getString("title"),
                         rs.getString("author"),
                         rs.getInt("publish_year"),
                         rs.getString("genre")
                 );
+                books.add(book);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return books;
     }
 
     @Override
-    public bookDto getBookByTitle(String title) {
+    public List<bookDto> getBookByTitle(String title) {
+        List<bookDto> books = new ArrayList<>();
         String sql = """
                 SELECT * FROM books
                 WHERE title = ?
@@ -100,19 +103,20 @@ public class bookDaoImpl implements bookDao {
             pstmt.setString(1, title);
             ResultSet rs = pstmt.executeQuery();
 
-            if (rs.next()) {
-                return new bookDto(
+            while (rs.next()) {
+                bookDto book =  new bookDto(
                         rs.getString("isbn"),
                         rs.getString("title"),
                         rs.getString("author"),
                         rs.getInt("publish_year"),
                         rs.getString("genre")
                 );
+                books.add(book);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return books;
     }
 
     @Override
