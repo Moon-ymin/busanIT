@@ -6,6 +6,7 @@ fun main() {
     var name = "홍길동"
     var age = 30
     var isAdult = true
+    // 암시적으로 추론된 타입으로 선언 : 정적 타입
 
     // name = 30   // 추론된 Type 이 String 이기 때문에 문자열만 대입 가능
     name = "전우치"
