@@ -1,0 +1,2 @@
+package b_type
+
