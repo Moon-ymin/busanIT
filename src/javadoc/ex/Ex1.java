@@ -16,7 +16,17 @@ public class Ex1 {
     6. 다른 프로젝트에서 수학유틸리티 라이브러리 클래스를 불러와 사용해보세요.
      */
     public static void main(String[] args) {
-        MathUtil mathUtil = new MathUtil();
-        MathArrayUtil mathArrayUtil = new MathArrayUtil();
+        // MathUtil 클래스의 테스트
+        System.out.println("max(10, 20) = " + MathUtil.max(10, 20));
+        System.out.println("min(10, 20) = " + MathUtil.min(10, 20));
+        System.out.println("sum(10, 20) = " + MathUtil.sum(10, 20));
+        System.out.println("factorial(5) = " + MathUtil.factorial(5));
+
+        // MathArrayUtil 클래스의 테스트
+        int[] nums = {1, 2, 3, 4, 5};
+        System.out.println("sum(nums) = " + MathArrayUtil.sum(nums));
+        System.out.println("average(nums) = " + MathArrayUtil.average(nums));
+        System.out.println("min(nums) = " + MathArrayUtil.min(nums));
+        System.out.println("max(nums) = " + MathArrayUtil.max(nums));
     }
 }
