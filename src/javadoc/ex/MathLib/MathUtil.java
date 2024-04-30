@@ -1,4 +1,4 @@
-package javadoc.ex.MathLib;
+package MathLib;
 
 /**
  * 수학 연산을 위한 클래스

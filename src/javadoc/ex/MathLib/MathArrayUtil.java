@@ -1,4 +1,4 @@
-package javadoc.ex.MathLib;
+package MathLib;
 
 /**
  * 정수형 배열의 연산을 수행하는 클래스
