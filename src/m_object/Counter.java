@@ -1,3 +1,4 @@
+/*
 package m_object;
 
 public class Counter {
@@ -6,4 +7,4 @@ public class Counter {
     public Counter() {
         count++;
     }
-}
+}*/

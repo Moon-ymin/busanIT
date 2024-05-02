@@ -1,3 +1,4 @@
+/*
 package m_object;
 
 public class Test {
@@ -11,4 +12,4 @@ public class Test {
         System.out.println(c1.count);
 
     }
-}
+}*/
