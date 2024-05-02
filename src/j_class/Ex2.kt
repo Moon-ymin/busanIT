@@ -14,17 +14,25 @@ package j_class
 - 섭씨 -> 화씨 : celsius * 9 / 5 + 32
 - 화씨 -> 섭씨 : (fahrenheit - 32) * 5 / 9
  */
-class Temperature(var celcius: Double, var fahrenheit: Double){
-    var transfer: Double
-        get() = (celcius * 9 / 5 + 32)
+class Temperature(var celsius: Double){
+    var fahrenheit: Double
+        get() = (celsius * 9 / 5 + 32)
         set(value) {
-            fahrenheit = (fahrenheit - 32) * 5 / 9
+            celsius = (celsius - 32) * 5 / 9
         }
+    fun status() {
+        println("섭씨 : ${"%.2f".format(celsius)}, 화씨 : ${"%.2f".format(fahrenheit)}")
+    }
 }
 
 fun main() {
-    val temperature1 = Temperature(20.0, 50.0)
-    println("섭씨 -> 화씨 : ${temperature1.celcius}")
-    temperature1.transfer = 60.0
-    println("화씨 -> 섭씨 : ${temperature1.fahrenheit}")
+    val temperature = Temperature(20.0)
+
+    temperature.status()
+
+    temperature.fahrenheit = 80.0
+    temperature.status()
+
+    temperature.celsius = 36.5
+    temperature.status()
 }
