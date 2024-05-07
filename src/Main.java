@@ -8,6 +8,7 @@ public class Main {
             cnt = word.contains(" ") ? 0 : cnt+1;
             answer += cnt%2 == 0 ? word.toLowerCase() : word.toUpperCase();
         }
+
         System.out.println(answer);
     }
 }
