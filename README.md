@@ -106,8 +106,8 @@ MyAndroidApp/
   - [뷰의 레이아웃](https://developer.android.com/develop/ui/views/layout/declaring-layout?hl=ko)
     - ![img_1.png](img_1.png)
     - UI 인터페이스를 만드는 방법 2가지
-      1. [런타임에 레이아웃 요소 인스턴스화](java/com/busanit/ch01_layout/pr01/Test1Activity.kt)
-      2. [XML로 선언해서 런타임에서 실행](res/layout/activity_test2.xml) 
+      1. [런타임에 레이아웃 요소 인스턴스화](ch01_layout/src/main/java/com/busanit/ch01_layout/pr01/Test1Activity.kt)
+      2. [XML로 선언해서 런타임에서 실행](ch01_layout/src/main/res/layout/activity_test2.xml) 
         이후 Test2Activity.kt 에서 `setContentView(R.layout.activity_test2)`로 화면에 출력될 레이아웃 XML을 매개변수에 명시
   - View 클래스 : (화면 구성과 관련된 클래스)
     - ViewGroup : View 의 하위클래스지만. 화면에는 아무것도 출력하지 않고 다른 뷰 여러개를 묶는 그릇 역할 클래스
