@@ -114,3 +114,31 @@ MyAndroidApp/
       - XXXLayout : 뷰의 컨테이너 역할
     - TextView, XXXView : 특정 UI를 출력할 목적으로 사용하는 클래스 
     
+## 뷰 바인딩
+  - 레이아웃 XML 파일에 선언한 뷰 객체를 코드에서 쉽게 이용하는 방법
+  - 모듈 단위 build.gradle 파일 android 영역에 설정 선언 추가
+    ```
+    android {
+        ... (생략)
+        viewBinding { enable = true }
+        ...
+    }
+    ...
+    ```
+  - Gradle 을 동기화하면, 자동으로 뷰 객체 포함하는 클래스가 생성
+  - 레이아웃 XML 파일의 이름을 따름
+    - 클래스이름 : 첫글자 및 _ 뒤를 대문자로 바꾼 후 'Binding' 추가
+      - activity_main.xml -> ActivityMainBinding
+      ```kt
+      // 바인딩 객체로 화면을 출력
+        setContentView(binding.root)
+
+        // xml 의 요소들을 뷰 객체로 선언할 필요 없이
+        binding.visibleButton.setOnClickListener {
+            binding.targetView.visibility = View.VISIBLE
+        }
+
+        binding.invisibleButton.setOnClickListener {
+            binding.targetView.visibility = View.INVISIBLE
+        }
+      ```
