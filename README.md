@@ -1,5 +1,5 @@
 # Android Studio 
-
+`필요 : MVVM 아키텍처 이해`
 ## 플랫폼 아키텍쳐
   ![img.png](img.png)
   - [플랫폼 아키텍쳐](https://developer.android.com/guide/platform?hl=ko)
