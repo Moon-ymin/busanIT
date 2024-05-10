@@ -693,7 +693,10 @@
          - 더 이상 읽을 정보가 없으면 false
        - get*Type*(숫자) : 컬럼의 순서를 해당 타입으로 반환
        - get*Type*(이름) : 해당 컬럼명을 해당 타입으로 반환
-
+  4. [SQL injection](jdbc/sqlinjection) 
+     - prepare 가 아닌 Statement 로 매개변수가 있는 쿼리문을 작성할 경우
+     - Statement에서 매개변수를 받아 작성할 경우 SQL 인젝션 공격의 위험이 높다
+     
 ### VO, DTO
   - VO : Value Object, 데이터를 전달하는 데 사용되는 객체
     - 데이터 전달 역할만하고, 별도의 로직은 가지고 있지 않음

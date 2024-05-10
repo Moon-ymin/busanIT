@@ -33,6 +33,14 @@ public class LoginStatement {
             // SELECT * FROM users WHERE userId = 'anything' AND password = 'abcd' OR 'x'='x'
             
             // Statement에서 매개변수를 받아 작성할 경우 SQL 인젝션 공격의 위험이 높다
+            /*
+            PreparedStatement와 Statement는 JDBC(Java Database Connectivity)에서 SQL을 실행하는 데 사용되는 인터페이스입니다.
+            PreparedStatement는 미리 컴파일된 쿼리를 나타내고, 매개변수를 사용하여 쿼리를 동적으로 생성할 수 있습니다.
+
+            반면에 Statement는 정적인 SQL 문장을 나타내며, 매개변수를 사용하지 않고 직접 SQL 쿼리를 작성해야 합니다.
+            SQL Injection은 주로 Statement를 사용할 때 발생할 수 있습니다.
+            이는 사용자 입력을 직접 쿼리에 포함하므로, 사용자가 악의적인 SQL 코드를 입력하여 데이터베이스를 조작할 수 있습니다.
+             */
 
             // 완성된 SQL문을 실행하고
             ResultSet rs = stmt.executeQuery(sql);
