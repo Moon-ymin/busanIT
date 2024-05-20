@@ -1,4 +1,4 @@
-package com.busanit.ch00_practice
+package com.busanit.ch00_practice.pr1
 
 import android.os.Bundle
 import android.view.MenuItem

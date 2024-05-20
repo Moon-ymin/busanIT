@@ -1,4 +1,4 @@
-package com.busanit.ch00_practice
+package com.busanit.ch00_practice.pr1
 
 import android.graphics.Color
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.busanit.ch00_practice.R
 import com.busanit.ch00_practice.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
