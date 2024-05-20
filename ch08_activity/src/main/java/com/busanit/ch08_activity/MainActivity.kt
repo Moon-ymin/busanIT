@@ -13,7 +13,7 @@ import com.busanit.ch08_activity.intent.Intent2Activity
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding       // 지연초기화 바인딩 객체 선언
+    lateinit var binding: ActivityMainBinding      // 지연초기화 바인딩 객체 선언
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
