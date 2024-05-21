@@ -35,9 +35,6 @@
       <SelectionState runConfigName="MainActivity (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Main2Activity">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="ch08_activity.ex03">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
@@ -48,12 +45,6 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="ch08_activity.ex02">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="ch08_activity.ex012">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="ch08_activity.ex1">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
