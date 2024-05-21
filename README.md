@@ -1467,3 +1467,22 @@ ActivityResultContracts는 다양한 기본 계약을 제공합니다. 다음은
 - [안드로이드 개발자 공식 문서: Intent와 Intent Filters](https://developer.android.com/guide/components/intents-filters)
 - [안드로이드 개발자 공식 문서: 액티비티 결과 처리](https://developer.android.com/training/basics/intents/result)
 - [안드로이드 개발자 공식 문서: Activity Result API](https://developer.android.com/training/basics/intents/result)
+
+### 액티비티 스택(Activity Stack)이란?
+- 액티비티 스택은 LIFO(Last In, First Out) 구조로, 안드로이드 시스템에서 액티비티를 관리하는 방법입니다. 새로운 액티비티가 시작될 때마다 스택의 맨 위에 추가되고, 뒤로 가기(Back) 버튼을 누르면 스택의 맨 위에 있는 액티비티가 제거됩니다.
+
+#### 스택의 동작 방식
+1. 새로운 액티비티 시작: `startActivity()` 메서드를 호출하면 새로운 액티비티가 시작되고 스택의 맨 위에 추가됩니다.
+2. 현재 액티비티 일시 중지: 새로운 액티비티가 시작되면 현재 액티비티는 일시 중지 상태(Paused)가 됩니다.
+3. 현재 액티비티 종료: `finish()` 메서드를 호출하면 현재 액티비티가 종료되고 스택에서 제거됩니다.
+4. 뒤로 가기 버튼: 사용자가 뒤로 가기 버튼을 누르면 스택의 맨 위에 있는 액티비티가 제거되고, 그 아래에 있는 액티비티가 다시 활성화됩니다.
+
+#### 인텐트 플래그(Intent Flags)
+- FLAG_ACTIVITY_NEW_TASK: 새로운 태스크(Task)에서 액티비티를 시작합니다.
+- FLAG_ACTIVITY_CLEAR_TOP: 스택의 위에 있는 액티비티들을 제거하고 지정된 액티비티를 최상단으로 가져옵니다.
+- FLAG_ACTIVITY_SINGLE_TOP: 스택의 최상단에 동일한 액티비티가 이미 존재하는 경우, 새로운 인스턴스를 생성하지 않고 기존 인스턴스를 재사용합니다.
+
+#### 태스크(Task)와 백스택(Back Stack)
+- 태스크는 사용자 작업의 논리적인 단위로, 여러 액티비티로 구성될 수 있습니다. 예를 들어, 이메일 작성, 전송, 확인 등의 작업이 하나의 태스크를 구성할 수 있습니다.
+- 백스택은 액티비티 스택의 또 다른 표현으로, 사용자가 이전에 방문한 액티비티의 기록을 담고 있어 사용자가 뒤로 가기 버튼을 눌렀을 때 이전 액티비티로 돌아갈 수 있게 합니다.
+
