@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".stack.OneActivity"
+    tools:context=".stack.ThreeActivity"
     android:orientation="vertical">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:background="@color/black"
         android:gravity="center"
-        android:text="1 -> 1"
+        android:text="3 -> 1"
         android:textColor="#FF0"
         android:textSize="40sp" />
 
@@ -26,7 +26,7 @@
         android:layout_weight="1"
         android:background="@color/black"
         android:gravity="center"
-        android:text="1 -> 2"
+        android:text="3 -> 2"
         android:textColor="#FF0"
         android:textSize="40sp" />
 
@@ -37,12 +37,8 @@
         android:layout_weight="1"
         android:background="@color/black"
         android:gravity="center"
-        android:text="1 -> 3"
+        android:text="3 -> 3"
         android:textColor="#FF0"
         android:textSize="40sp" />
-
-
-
-
 
 </LinearLayout>

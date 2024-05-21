@@ -9,6 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidStudy">
         <activity
+            android:name=".stack.ThreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".stack.TwoActivity"
+            android:exported="false" />
+        <activity
             android:name=".stack.OneActivity"
             android:exported="true">
             <intent-filter>
