@@ -22,7 +22,7 @@ class ItemAdapter(val itemList: MutableList<Item>) :
         return ItemViewHolder(binding)
     }
 
-    // 6-2. getItemCount : 데이터의 개수
+    // 6-2. getItemCount : 데이터의 개수 
     override fun getItemCount(): Int = itemList.size
 
     // 6-3. onBindViewHolder : 데이터와 뷰홀더 바인딩
