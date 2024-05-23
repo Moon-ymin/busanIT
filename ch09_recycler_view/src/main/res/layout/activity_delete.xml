@@ -5,9 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recyclerView.DeleteActivity"
     android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".recyclerView.DeleteActivity">
 
     <EditText
         android:id="@+id/editTextName"
@@ -35,12 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="항목을 추가합니다" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="항목을 삭제합니다" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
