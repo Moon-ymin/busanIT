@@ -11,7 +11,8 @@ class ItemAdapter(val itemList: MutableList<Item>) :
 
     // 5. 뷰 홀더 작성하기
     // 매개변수로 항목의 레이아웃 뷰 바인딩을 삽입
-    inner class ItemViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ItemViewHolder(val binding: ItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
     }
 
