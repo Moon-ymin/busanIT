@@ -5,34 +5,35 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".e_room.practice.TodoActivity"
-    android:orientation="vertical"
-    android:padding="16sp">
+    tools:context=".ex_todo.TodoActivity"
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="할 일을 입력하세요"
-        android:inputType="text" />
+        android:padding="16dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/editLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="장소를 입력하세요"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:hint="할 일을 입력하세요" />
 
-    <Button
-        android:id="@+id/addButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="할 일을 추가합니다." />
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="추가"
+            android:textSize="10dp"
+            />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:paddingTop="20sp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="match_parent" />
 </LinearLayout>
