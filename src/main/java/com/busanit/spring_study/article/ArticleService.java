@@ -3,14 +3,17 @@ package com.busanit.spring_study.article;
 import com.busanit.spring_study.comment.CommentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ArticleService {
+
     @Autowired
     private ArticleRepository articleRepository;
+
     @Autowired
     private CommentRepository commentRepository;
 
@@ -35,9 +38,8 @@ public class ArticleService {
 
             articleDTOs.add(articleDTO);        // 컬렉션에 ArticleDTO 추가
         }
+         */
 
-        return articleDTOs; */
-        
         return articles.stream()
                 .map(Article::toDTO)
                 .toList();
@@ -45,8 +47,13 @@ public class ArticleService {
 
     public ArticleDTO getArticleById(Long id) {
         Article article = articleRepository.findById(id).orElse(null);
-        // DTO 로 변환
-        return article !=  null ? article.toDTO() : null;
+        // DTO로 변환
+        if (article != null) {
+            return article.toDTO();
+        } else {
+            return null;
+        }
+        // return article != null ? article.toDTO() : null;
     }
 
     @Transactional
@@ -54,28 +61,30 @@ public class ArticleService {
         Article saved = articleRepository.save(dto.toEntity());
         return saved.toDTO();
     }
+
     @Transactional
     public ArticleDTO updateArticle(Long id, ArticleDTO updateArticle) {
         Article article = articleRepository.findById(id).orElse(null);
-
 
         if (article != null) {
             if (updateArticle.getTitle() != null) {
                 article.setTitle(updateArticle.getTitle());
             }
             if (updateArticle.getContent() != null) {
-                article.setTitle(updateArticle.getContent());
+                article.setContent(updateArticle.getContent());
             }
             if (updateArticle.getAuthor() != null) {
-                article.setTitle(updateArticle.getAuthor());
+                article.setAuthor(updateArticle.getAuthor());
             }
-            return  articleRepository.save(article).toDTO();
+            return articleRepository.save(article).toDTO();
+
         } else {
             return null;
         }
     }
+
     @Transactional
-    public boolean deleteArticle(Long id) {
+    public Boolean deleteArticle(Long id) {
         Article article = articleRepository.findById(id).orElse(null);
         if (article != null) {
             articleRepository.delete(article);
@@ -84,4 +93,34 @@ public class ArticleService {
             return false;
         }
     }
+
+    // 쿼리 메서드 사용
+    public List<ArticleDTO> getArticleByAuthor(String author) {
+        List<Article> articleList = articleRepository.findByAuthor(author);
+        return articleList.stream().map(Article::toDTO).toList();
+
+    }
+
+    public List<ArticleDTO> getArticleByTitleContaining(String title) {
+        List<Article> articleList = articleRepository.findByTitleContaining(title);
+        return articleList.stream().map(Article::toDTO).toList();
+    }
+
+    public Page<ArticleDTO> getArticles(int page, int size, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        Page<Article> articles = articleRepository.findAll(pageable);
+        List<ArticleDTO> list = articles.stream().map(article -> article.toDTO()).toList();
+        Page<ArticleDTO> articleDTOS = new PageImpl<>(list, pageable, articles.getTotalElements());
+        return articleDTOS;
+    }
+
+    public Page<ArticleDTO> getArticlesByAuthor(String author, int page, int size, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        Page<Article> articles = articleRepository.findByAuthor(author, pageable);
+        List<ArticleDTO> list = articles.stream().map(article -> article.toDTO()).toList();
+        Page<ArticleDTO> articleDTOs = new PageImpl<>(list, pageable, articles.getTotalElements());
+        return articleDTOs;
+    }
+
+
 }

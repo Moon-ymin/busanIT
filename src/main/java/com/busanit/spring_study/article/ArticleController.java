@@ -1,6 +1,7 @@
 package com.busanit.spring_study.article;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,36 @@ public class ArticleController {
         } else {
             return ResponseEntity.ok().build();
         }
+    }
+
+    // 커스텀 쿼리 요청
+    @GetMapping("/title/{title}")
+    public List<ArticleDTO> getArticleByTitleContaining(@PathVariable String title) {
+        return articleService.getArticleByTitleContaining(title);
+    }
+
+    @GetMapping("/author/{author}")
+    public List<ArticleDTO> getArticleByAuthor(@PathVariable String author) {
+        return articleService.getArticleByAuthor(author);
+    }
+
+    // 게시글 페이징, 정렬된 상태로 조회하기
+    @GetMapping("/page")
+    public Page<ArticleDTO> getArticles(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy) {
+        Page<ArticleDTO> articles = articleService.getArticles(page, size, sortBy);
+        return articles;
+    }
+    // 특정 저자의 게시글 페이징, 정렬된 상태로 조회
+    @GetMapping("/author")
+    public Page<ArticleDTO> getArticlesByAuthor(
+            @RequestParam String author,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy) {
+        Page<ArticleDTO> articles = articleService.getArticlesByAuthor(author, page, size, sortBy);
+        return articles;
     }
 }
