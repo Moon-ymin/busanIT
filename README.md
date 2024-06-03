@@ -83,7 +83,10 @@
 
 #### 주요 특징
 - IoC (Inversion of Control): 객체 생성 및 의존성 관리를 프레임워크가 담당.
-- DI (Dependency Injection): 필요한 객체를 외부에서 주입받아 유연성과 테스트 용이성 증가.
+- DI (Dependency Injection): 필요한 객체를 외부에서 주입받아 `유연성`과 테스트 용이성 증가.
+  - 한 클래스가 다른 클래스의 메서드를 실행할 때 `의존`이라고 함
+  - 의존 객체를 직접 생성하는 방식과 달리 의존 객체를 주입하는 방식은 수정할 코드가 한 곳으로 집중됨
+
 - 모듈화: 독립적으로 사용 가능한 다양한 모듈로 구성.
 - AOP (Aspect-Oriented Programming): 횡단 관심사를 모듈화하여 코드 중복 감소.
 - 통합성: JPA, JMS, RabbitMQ 등 다양한 기술과의 통합 지원.
@@ -365,6 +368,15 @@ src
    - 복잡성 증가: IoC 컨테이너 사용으로 인해 초기 설정이 복잡해질 수 있음.
    - 추적 어려움: 의존성 주입이 자동으로 이루어지기 때문에 코드에서 객체 생성과 의존성 주입의 흐름을 추적하기 어려울 수 있음.
 
+#### Constructor VS Setter DI
+- 장점
+  - Constructor : Bean 객체를 생성하는 시점에 모든 의존 객체가 주입된다
+  - Setter : 세터 메서드 이름을 통해 어떤 의존 객체가 주입되는지 알 수 있다.
+- 단점
+  - Constructor : 파라미터 개수가 많을 경우, 각 인자가 어떤 의존 객체를 설정하는지 알아내려면 생성자의 코드를 확인해야 함
+  - Setter : Setter 메서드를 사용해서 필요한 의존 객체를 전달하지 않아도 빈 객체가 생성되어서 객체를 사용하는 시점에 
+    NullPointerException 발생 가능
+
 ### Annotation 기반의 스프링 Bean 관리
 
 - Spring Framework는 어노테이션을 사용하여 간편하고 명확하게 Bean을 정의하고 관리
@@ -417,6 +429,7 @@ src
    - 역할: @Configuration 클래스 내에서 Bean 정의.
    - 사용 위치: 메서드.
    - 설명: 해당 메서드의 리턴 객체를 Spring Bean으로 등록. @Configuration 클래스 내에서 사용하여 Bean 설정을 정의.
+   - 별도 설정을 하지 않을 경우 스프링은 한 개의 빈 객체만 생성 -> `싱글톤 범위를 갖는다.`    
 
 9. @ComponentScan
    - 역할: 특정 패키지를 스캔하여 @Component, @Service, @Repository, @Controller 등을 자동으로 Bean으로 등록.
@@ -452,7 +465,7 @@ src
 1. HTTP (HyperText Transfer Protocol)
    - 정의: 웹 상에서 데이터를 주고받기 위한 프로토콜.
    - 특징:
-      - 무상태성(Statelessness): 각 요청은 독립적이며, 서버는 요청 간의 상태를 저장하지 않음.
+      - `무상태성(Statelessness)`: 각 요청은 독립적이며, 서버는 요청 간의 상태를 저장하지 않음.
       - HTTP 메소드:
          - GET: 리소스를 조회.
          - POST: 새로운 리소스를 생성.
@@ -478,7 +491,7 @@ src
 1. REST (Representational State Transfer)
    - 정의: 자원을 이름(URI)으로 구분하고, 해당 자원의 상태를 주고받는 웹 아키텍처 스타일.
    - 특징:
-      - 무상태성(Statelessness): 서버는 클라이언트 상태를 저장하지 않음.
+      - `무상태성(Statelessness)`: 서버는 클라이언트 상태를 저장하지 않음.
       - 캐시 가능(Cacheable): 응답은 캐시될 수 있음.
       - 일관된 인터페이스(Uniform Interface): 자원 접근을 위한 일관된 방법 제공.
       - 계층형 시스템(Layered System): 여러 계층으로 구성된 시스템.
@@ -2019,9 +2032,3 @@ spring.jpa.defer-datasource-initialization=true
 2. 데이터 일관성: 페이징된 데이터가 중간에 변경될 경우 일관성이 깨질 수 있음.
 3. 예외 처리: 페이지 번호가 범위를 벗어나는 경우 예외 처리 필요.
 
----
-# Spring Security
-- gradle에 의존성 implementation `'org.springframework.boot:spring-boot-starter-security'` 이거 추가해서 
-  Spring security 사용
-![img_2.png](img_2.png)
-- REST API 사용 이전에 security 단계 선행
