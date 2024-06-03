@@ -334,7 +334,8 @@ src
 ### IoC (제어의 역전) 개념
 
 #### 정의
-- Inversion of Control (IoC): 객체의 생성 및 제어 권한을 개발자가 아닌 프레임워크나 컨테이너에 위임하는 디자인 원칙.
+- Inversion of Control (IoC): 객체의 생성 및 제어 권한을 개발자가 아닌 프레임워크나 컨테이너에 위임하는 
+  디자인 원칙.
 
 #### 주요 특징
 - 객체의 생성 및 관리: 프레임워크가 객체를 생성하고, 의존성을 주입하며, 생명주기를 관리.
@@ -500,7 +501,7 @@ src
 #### REST의 주요 원칙
 - 정의: 자원을 이름(URI)으로 구분하고, 해당 자원의 상태를 주고받는 웹 아키텍처 스타일.
 - 특징:
-   - 무상태성(Statelessness): 서버는 클라이언트 상태를 저장하지 않음.
+   - `무상태성(Statelessness)`: 서버는 클라이언트 상태를 저장하지 않음.
    - 캐시 가능(Cacheable): 응답은 캐시될 수 있음.
    - 계층형 시스템(Layered System): 여러 계층으로 구성된 시스템.
    - 일관된 인터페이스(Uniform Interface): 자원 접근을 위한 일관된 방법 제공.
@@ -1405,28 +1406,622 @@ public class UserController {
 
 ---
 
-```properties
-# MySQL Database configuration
-spring.datasource.url=jdbc:mysql://localhost:3306/springdb
-spring.datasource.username=root
-spring.datasource.password=1234
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+### Lombok
 
-# JPA configuration
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+#### Lombok 소개
+- Lombok: 반복적인 코드 작성을 줄이기 위해 사용하는 라이브러리.
+- 주요 기능: 자동으로 getter, setter, toString, equals, hashCode 메서드 생성.
+
+#### 설치 및 설정
+1. 의존성 추가 (Gradle):
+    ```groovy
+    dependencies {
+        implementation 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+    }
+    ```
+
+2. IntelliJ IDEA 설정:
+    - 플러그인 설치: `File` -> `Settings` -> `Plugins` -> `Lombok` 검색 및 설치.
+    - 애노테이션 프로세싱 활성화: `File` -> `Settings` -> `Build, Execution, Deployment` -> `Compiler` -> `Annotation Processors` -> "Enable annotation processing" 체크.
+
+#### 주요 애노테이션
+1. @Data:
+    - 모든 필드에 대해 getter, setter 생성.
+    - `toString`, `equals`, `hashCode` 메서드 생성.
+    - 예제:
+      ```java
+      @Data
+      public class Article {
+          private Long id;
+          private String title;
+          private String content;
+          private String author;
+      }
+      ```
+
+2. @Getter, @Setter:
+    - 각각 필드에 대해 getter, setter 메서드 생성.
+    - 예제:
+      ```java
+      @Getter
+      @Setter
+      private String title;
+      ```
+
+3. @NoArgsConstructor, @AllArgsConstructor:
+    - 기본 생성자와 모든 필드를 파라미터로 갖는 생성자 생성.
+    - 예제:
+      ```java
+      @NoArgsConstructor
+      @AllArgsConstructor
+      public class Article {
+          private Long id;
+          private String title;
+          private String content;
+          private String author;
+      }
+      ```
+
+4. @Builder:
+    - 빌더 패턴을 사용하여 객체 생성.
+    - 예제:
+      ```java
+      @Builder
+      public class Article {
+          private Long id;
+          private String title;
+          private String content;
+          private String author;
+      }
+      ```
+
+5. @ToString:
+    - `toString` 메서드 생성.
+    - 예제:
+      ```java
+      @ToString
+      public class Article {
+          private Long id;
+          private String title;
+      }
+      ```
+
+6. @EqualsAndHashCode:
+    - `equals` 및 `hashCode` 메서드 생성.
+    - 예제:
+      ```java
+      @EqualsAndHashCode
+      public class Article {
+          private Long id;
+          private String title;
+      }
+      ```
+
+#### 주의 사항
+- Lombok 애노테이션은 컴파일 시점에 코드를 생성하므로, IDE에서 설정이 제대로 되어 있어야 함.
+- 프로젝트 빌드 툴과 IDE의 Lombok 설정이 일치해야 문제 발생을 방지할 수 있음.
+
+#### 참조 사이트
+- [Lombok 공식 사이트](https://projectlombok.org/)
+
+
+
+### JPA 관계 매핑 개념 리뷰 요약
+
+#### JPA 관계 매핑 소개
+- JPA 관계 매핑: 객체 간의 관계를 데이터베이스 테이블 간의 관계로 매핑.
+- 주요 유형: 일대일 (One-to-One), 다대일 (Many-to-One), 일대다 (One-to-Many), 다대다 (Many-to-Many).
+
+#### 관계 매핑 유형
+
+1. 일대일 (One-to-One)
+    - 정의: 하나의 엔티티가 다른 하나의 엔티티와 단 하나의 관계를 맺음.
+    - 예제:
+      ```java
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @OneToOne
+          @JoinColumn(name = "profile_id")
+          private Profile profile;
+      }
+
+      @Entity
+      public class Profile {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @OneToOne(mappedBy = "profile")
+          private User user;
+      }
+      ```
+
+2. 다대일 (Many-to-One)
+    - 정의: 여러 개의 엔티티가 하나의 엔티티와 관계를 맺음.
+    - 예제:
+      ```java
+      @Entity
+      public class Comment {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @ManyToOne
+          @JoinColumn(name = "article_id")
+          private Article article;
+      }
+
+      @Entity
+      public class Article {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+      }
+      ```
+
+3. 일대다 (One-to-Many)
+    - 정의: 하나의 엔티티가 여러 개의 엔티티와 관계를 맺음.
+    - 예제:
+      ```java
+      @Entity
+      public class Article {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+          private List<Comment> comments;
+      }
+
+      @Entity
+      public class Comment {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @ManyToOne
+          @JoinColumn(name = "article_id")
+          private Article article;
+      }
+      ```
+
+4. 다대다 (Many-to-Many)
+    - 정의: 여러 개의 엔티티가 여러 개의 엔티티와 관계를 맺음.
+    - 예제:
+      ```java
+      @Entity
+      public class Student {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @ManyToMany
+          @JoinTable(
+              name = "student_course",
+              joinColumns = @JoinColumn(name = "student_id"),
+              inverseJoinColumns = @JoinColumn(name = "course_id")
+          )
+          private Set<Course> courses = new HashSet<>();
+      }
+
+      @Entity
+      public class Course {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @ManyToMany(mappedBy = "courses")
+          private Set<Student> students = new HashSet<>();
+      }
+      ```
+
+#### 주요 어노테이션
+1. @OneToOne: 1대1 관계 설정.
+2. @OneToMany: 1대다 관계 설정.
+3. @ManyToOne: 다대1 관계 설정.
+4. @ManyToMany: 다대다 관계 설정.
+5. @JoinColumn: 외래 키 컬럼 지정.
+6. @JoinTable: 조인 테이블 지정 (다대다 관계에서 사용).
+
+#### 주인 (Owner)과 비주인 (Inverse)
+- 주인 (Owner): 관계를 관리하는 쪽으로, 외래 키를 소유하는 엔티티.
+- 비주인 (Inverse): 관계를 읽기만 하는 쪽으로, 주인에 의해 매핑됨을 지정 (mappedBy 속성 사용).
+
+#### 관계 매핑 설정 예제
+- Article과 Comment 관계 (1대다, 다대1 관계):
+  ```java
+  @Entity
+  public class Article {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      private String title;
+      private String content;
+      private String author;
+
+      @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+      private List<Comment> comments;
+  }
+
+  @Entity
+  public class Comment {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      private String content;
+      private String author;
+
+      @ManyToOne
+      @JoinColumn(name = "article_id")
+      private Article article;
+  }
+  ```
+
+#### 주의 사항
+- 관계의 주인을 명확히 정의해야 함.
+- `cascade` 속성을 사용하여 관련 엔티티의 상태 전이를 관리할 수 있음.
+- `orphanRemoval` 속성을 사용하여 부모 엔티티에서 자식 엔티티가 제거될 때 자식 엔티티도 삭제됨.
+
+#### 참조 사이트
+- [Spring Data JPA Reference Documentation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.entity-persistence)
+
+
+### JPA 관계 매핑: 단방향과 양방향 개념 리뷰 요약
+
+#### 관계 매핑의 방향성
+
+- 단방향 (Unidirectional): 한쪽 엔티티만 다른 엔티티를 참조.
+- 양방향 (Bidirectional): 양쪽 엔티티가 서로를 참조.
+
+#### 양방향 관계 매핑
+
+- 양방향 Many-to-One/One-to-Many
+    - 정의: 양쪽 엔티티가 서로를 참조.
+    - 예제:
+      ```java
+      @Entity
+      public class Article {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String title;
+
+          @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+          private List<Comment> comments;
+      }
+
+      @Entity
+      public class Comment {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String content;
+
+          @ManyToOne
+          @JoinColumn(name = "article_id")
+          private Article article;
+      }
+      ```
+
+#### 주의 사항
+
+1. 양방향 관계의 설정:
+    - 양방향 관계에서는 한쪽을 주인(Owner)으로 설정하고 다른 쪽을 비주인(Inverse)으로 설정.
+    - 주인 쪽은 외래 키를 관리하며, `@JoinColumn`을 사용.
+    - 비주인 쪽은 `mappedBy` 속성을 사용하여 주인 쪽의 필드를 참조.
+
+2. 순환 참조 방지:
+    - 양방향 관계를 JSON으로 직렬화할 때 순환 참조가 발생할 수 있음.
+    - 이를 방지하기 위해 `@JsonManagedReference`와 `@JsonBackReference` 어노테이션을 사용하거나, DTO(Data Transfer Object) 패턴을 사용.
+
+#### 예제 설명
+
+1. 단방향 One-to-Many:
+    - `Article` 엔티티는 여러 개의 `Comment` 엔티티를 참조.
+    - `Comment` 엔티티는 `Article` 엔티티를 참조하지 않음.
+    - `@JoinColumn`을 `Article` 엔티티에 사용하여 외래 키를 지정.
+
+2. 양방향 Many-to-One/One-to-Many:
+    - `Article` 엔티티와 `Comment` 엔티티가 서로를 참조.
+    - `Article` 엔티티의 `comments` 필드는 `Comment` 엔티티의 `article` 필드를 `mappedBy`.
+    - `Comment` 엔티티의 `article` 필드는 외래 키를 관리하며, `@JoinColumn`을 사용.
+
+
+---
+
+### Entity와 DTO
+
+#### 개념 정의
+
+- 엔티티(Entity): 데이터베이스 테이블과 매핑되는 클래스. 비즈니스 로직과 데이터베이스 작업을 포함.
+- DTO (Data Transfer Object): 데이터 전송 객체. 계층 간 데이터 전달을 위한 객체로, 보통 비즈니스 로직이 포함되지 않음.
+
+#### 왜 엔티티와 DTO를 구분하는가?
+- 보안: 민감한 데이터나 내부 구현을 노출하지 않기 위해.
+- 유연성: 데이터베이스 스키마 변경과 API 변경을 독립적으로 관리.
+- 유지보수성: 비즈니스 로직과 데이터 전송 로직을 분리하여 코드 가독성과 유지보수성 향상.
+
+#### 변환 방법
+
+1. 수동 변환 (Manual Conversion) : toEntity, toDto, 생성 메서드 등
+2. 라이브러리 사용 (자동 변환): ModelMapper, MapStruct 등.
+3. 서비스 클래스에서 변환하여 사용
+
+#### 주의 사항
+1. 순환 참조 방지:
+    - 엔티티 간의 순환 참조를 방지하기 위해 DTO를 사용.
+    - DTO는 가볍고 단순하여 전송에 최적화됨.
+
+2. 보안 및 데이터 보호:
+    - 엔티티에는 민감한 데이터가 포함될 수 있으므로, DTO를 사용하여 필요한 데이터만 전송.
+
+3. 유지보수성:
+    - 엔티티와 DTO를 분리하여 데이터베이스 스키마 변경 시 API 변경을 최소화.
+
+- 모델(Entity)와 DTO 간의 변환과 데이터 전달을 통해 애플리케이션의 계층 간에 데이터를 효율적으로 주고받을 수 있으며, 코드의 유지보수성을 향상시키고 보안을 강화할 수 있음
+
+
+
+### JPA 쿼리 메서드와 JPQL, 네이티브 쿼리 개념 리뷰 요약
+
+#### JPA 쿼리 메서드
+
+- 쿼리 메서드: 메서드 이름을 기반으로 JPA가 쿼리를 자동 생성.
+- 주요 기능: 간단한 조회 작업을 메서드 이름만으로 처리.
+
+##### 작성 규칙
+1. 접두사:
+    - `findBy`, `readBy`, `queryBy`, `countBy`, `getBy`
+2. 조건 키워드:
+    - `And`, `Or`, `Between`, `LessThan`, `GreaterThan`, `Like`, `Not`, `In`, `OrderBy`, `NotNull`, `Null`
+
+##### 예시
+```java
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+@Repository
+public interface ArticleRepository extends JpaRepository<Article, Long> {
+    List<Article> findByAuthor(String author);
+    List<Article> findByTitleContaining(String title);
+    List<Article> findByAuthorAndTitle(String author, String title);
+}
 ```
 
-- spring.datasource.url: MySQL 데이터베이스의 URL입니다. `localhost:3306`은 MySQL 서버가 로컬에서 실행 중이고, 포트는 3306임을 의미합니다. `springdb`는 사용할 데이터베이스 이름입니다.
-- spring.datasource.username: 데이터베이스 사용자 이름.
-- spring.datasource.password: 데이터베이스 비밀번호.
-- spring.datasource.driver-class-name: MySQL JDBC 드라이버 클래스 이름.
-- spring.jpa.hibernate.ddl-auto: Hibernate가 데이터베이스 스키마를 생성 및 업데이트하는 방식 설정.
-   - none: 스키마 변경 불가
-   - create: 기존 스키마 삭제 후 새 스키마 생성 (주의: 데이터 손실 가능성 있음)
-   - create-drop: 애플리케이션 종료 후 스키마 삭제 (테스트 환경에 유용)
-   - update: 엔티티 클래스에 맞춰 스키마 자동 업데이트 (새로운 요소만 추가, 기존 제거 불가)
-   - validate: 엔티티와 테이블 매핑 확인 (스키마 변경 불가)
-- spring.jpa.show-sql: 쿼리 로깅을 활성화하여 SQL 쿼리를 콘솔에 출력.
-- spring.jpa.properties.hibernate.dialect: MySQL에 맞는 Hibernate 방언 설정.
+#### JPQL (Java Persistence Query Language)
+
+- JPQL: 엔티티 객체를 대상으로 하는 객체 지향 쿼리 언어.
+- 특징: SQL과 유사하지만, 데이터베이스 테이블이 아닌 엔티티 객체를 대상으로 쿼리를 작성.
+
+##### 사용 예시
+```java
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+@Repository
+public interface ArticleRepository extends JpaRepository<Article, Long> {
+
+    @Query("SELECT a FROM Article a WHERE a.author = :author")
+    List<Article> findByAuthorJPQL(@Param("author") String author);
+
+    @Query("SELECT a FROM Article a WHERE a.title LIKE %:title%")
+    List<Article> findByTitleContainingJPQL(@Param("title") String title);
+
+    @Query("SELECT a FROM Article a WHERE a.author = :author AND a.title = :title")
+    List<Article> findByAuthorAndTitleJPQL(@Param("author") String author, @Param("title") String title);
+}
+```
+
+#### 네이티브 쿼리 (Native Query)
+
+- 네이티브 쿼리: 실제 데이터베이스 SQL 쿼리를 사용하는 방법.
+- 특징: 데이터베이스에 종속적인 쿼리를 작성할 수 있음.
+
+##### 사용 예시
+```java
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+@Repository
+public interface ArticleRepository extends JpaRepository<Article, Long> {
+
+    @Query(value = "SELECT * FROM article WHERE author = :author", nativeQuery = true)
+    List<Article> findByAuthorNative(@Param("author") String author);
+
+    @Query(value = "SELECT * FROM article WHERE title LIKE %:title%", nativeQuery = true)
+    List<Article> findByTitleContainingNative(@Param("title") String title);
+
+    @Query(value = "SELECT * FROM article WHERE author = :author AND title = :title", nativeQuery = true)
+    List<Article> findByAuthorAndTitleNative(@Param("author") String author, @Param("title") String title);
+}
+```
+
+### 상세 설명
+
+#### 1. JPA 쿼리 메서드
+
+- 자동 생성: 메서드 이름을 분석하여 자동으로 쿼리를 생성.
+- 단순하고 직관적: 메서드 이름만으로 쿼리를 작성할 수 있어 코드가 단순하고 직관적.
+- 예시:
+  ```java
+  List<Article> findByAuthor(String author);
+  List<Article> findByTitleContaining(String title);
+  ```
+
+#### 2. JPQL
+
+- 객체 지향 쿼리 언어: 엔티티 객체를 대상으로 하는 쿼리 언어.
+- 유연한 쿼리 작성: 더 복잡한 쿼리를 작성할 수 있음.
+- 예시:
+  ```java
+  @Query("SELECT a FROM Article a WHERE a.author = :author")
+  List<Article> findByAuthorJPQL(@Param("author") String author);
+  ```
+
+#### 3. 네이티브 쿼리
+
+- SQL 쿼리 사용: 데이터베이스에 직접 전송되는 SQL 쿼리.
+- 데이터베이스 종속적: 특정 데이터베이스에 의존하는 쿼리를 작성할 수 있음.
+- 예시:
+  ```java
+  @Query(value = "SELECT * FROM article WHERE author = :author", nativeQuery = true)
+  List<Article> findByAuthorNative(@Param("author") String author);
+  ```
+
+### 주의 사항
+
+1. 성능: 네이티브 쿼리는 데이터베이스에 직접 접근하므로 성능이 더 좋을 수 있지만, 데이터베이스 종속적일 수 있음.
+2. 유연성: JPQL은 엔티티 객체를 대상으로 하여 데이터베이스 독립적인 쿼리를 작성할 수 있음.
+3. 유지보수성: 쿼리 메서드는 메서드 이름만으로 쿼리를 작성하므로 유지보수가 용이함.
+
+### 참조 사이트
+
+- [Spring Data JPA Reference Documentation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods)
+
+
+
+---
+
+### 데이터베이스 초기화 설정 (data.sql 파일)
+
+#### 개념
+- data.sql 파일: Spring Boot 애플리케이션이 시작될 때 실행되어 초기 데이터를 데이터베이스에 삽입.
+- schema.sql 파일: 데이터베이스 스키마를 정의하는 파일로, 데이터베이스 테이블을 생성하거나 수정하는 쿼리를 포함.
+
+#### 설정
+- application.properties 파일에서 설정.
+- spring.sql.init.mode: 데이터베이스 초기화 모드 설정 (`always`, `never`).
+- spring.jpa.defer-datasource-initialization: 데이터베이스 초기화 설정 (`true`, `false`).
+- 데이터베이스 연결 설정: URL, 사용자 이름, 비밀번호 등 데이터베이스 연결 정보 설정.
+- JPA 설정: Hibernate DDL 자동화 설정, SQL 출력 설정 등.
+
+#### 주요 설정 예시
+- 데이터베이스 초기화 모드와 방식 설정:
+```properties
+# 데이터베이스 초기화 모드 설정 (always|never)
+spring.sql.init.mode=always
+
+# 데이터베이스 초기화 방식 설정
+spring.jpa.defer-datasource-initialization=true
+````
+
+#### 데이터베이스 초기화 시 주의 사항
+
+1. 데이터베이스 상태: 동일한 데이터가 이미 존재하는 경우 예외가 발생할 수 있음.
+2. 트랜잭션: `data.sql` 파일의 실행은 기본적으로 트랜잭션 내에서 이루어지지 않음. 필요한 경우 트랜잭션을 관리하는 방법을 고려해야 함.
+3. 순서: `schema.sql` 파일이 있는 경우, 이 파일이 먼저 실행되고, 그 후에 `data.sql` 파일이 실행됨.
+
+
+---
+### 페이징과 정렬
+
+#### 페이징 (Paging)
+
+- 개념: 대용량 데이터를 작은 페이지 단위로 나누어 조회하는 방법.
+- 목적: 데이터 조회 시 성능 향상, 사용자에게 더 나은 경험 제공.
+- 구성 요소:
+    - Pageable: 페이징 정보를 담고 있는 인터페이스.
+    - PageRequest: `Pageable`의 구현체로, 페이지 번호, 페이지 크기, 정렬 정보를 설정.
+    - Page: 페이징된 결과를 담고 있는 인터페이스로, 페이지 내의 데이터와 페이지 정보(전체 페이지 수, 현재 페이지, 총 데이터 수 등)를 제공.
+
+#### 정렬 (Sorting)
+
+- 개념: 데이터를 특정 기준에 따라 순서대로 정렬하는 방법.
+- 목적: 데이터 검색 결과를 원하는 순서로 정렬하여 제공.
+- 구성 요소:
+    - Sort: 정렬 정보를 담고 있는 클래스.
+    - Direction: 정렬 방향 (오름차순 `ASC`, 내림차순 `DESC`).
+
+#### 페이징과 정렬 설정
+
+#### Pageable 인터페이스
+
+- 기능: 페이징 정보를 제공하며, 페이지 번호, 페이지 크기, 정렬 기준을 포함.
+- 주요 메서드:
+    - `getPageNumber()`: 현재 페이지 번호.
+    - `getPageSize()`: 페이지 크기.
+    - `getSort()`: 정렬 정보.
+
+#### PageRequest 클래스
+
+- 기능: `Pageable`의 구현체로, 페이지 번호, 페이지 크기, 정렬 정보를 설정.
+- 생성 방법:
+    - `PageRequest.of(int page, int size)`: 페이지 번호와 페이지 크기를 설정.
+    - `PageRequest.of(int page, int size, Sort sort)`: 페이지 번호, 페이지 크기, 정렬 기준을 설정.
+
+#### Sort 클래스
+
+- 기능: 정렬 정보를 제공하며, 정렬할 속성과 정렬 방향을 포함.
+- 주요 메서드:
+    - `by(String... properties)`: 정렬할 속성 설정.
+    - `ascending()`: 오름차순 정렬.
+    - `descending()`: 내림차순 정렬.
+
+#### 페이징과 정렬 구현 예시
+
+#### 리포지토리 인터페이스
+
+- Pageable을 사용하는 메서드:
+    - `Page<T> findAll(Pageable pageable)`: 페이징과 정렬 정보를 사용하여 모든 데이터를 조회.
+    - `Page<T> findByAuthor(String author, Pageable pageable)`: 페이징과 정렬 정보를 사용하여 특정 작성자의 데이터를 조회.
+
+#### 서비스 클래스
+
+- 페이징과 정렬된 데이터 조회:
+    - 페이징과 정렬 정보를 설정하여 데이터 조회 메서드 호출.
+    - `Page<Article> articles = articleRepository.findAll(PageRequest.of(page, size, Sort.by(sortBy)));`
+
+#### 컨트롤러 클래스
+
+- API 엔드포인트:
+    - 페이지 번호, 페이지 크기, 정렬 기준을 요청 파라미터로 받아 서비스 클래스 메서드 호출.
+    - `ResponseEntity<Page<Article>> getArticles(int page, int size, String sortBy)`
+
+#### 사용 예시
+
+#### 페이징과 정렬된 데이터 조회 API
+
+1. 페이지 번호와 페이지 크기 설정:
+    - `GET http://localhost:8080/articles?page=0&size=10`
+    - 페이지 번호: `0` (첫 번째 페이지).
+    - 페이지 크기: `10` (한 페이지에 10개의 데이터).
+
+2. 정렬 기준 설정:
+    - `GET http://localhost:8080/articles?page=0&size=10&sortBy=title`
+    - 정렬 기준: `title` (제목 기준으로 정렬).
+
+3. 정렬 방향 설정:
+    - `GET http://localhost:8080/articles?page=0&size=10&sortBy=title&sortDir=asc`
+    - 정렬 기준: `title` (제목 기준으로 정렬).
+    - 정렬 방향: `asc` (오름차순 정렬).
+
+#### 주의 사항
+
+1. 성능: 대용량 데이터를 페이징할 때 성능을 고려해야 함. 적절한 인덱스 설정 필요.
+2. 데이터 일관성: 페이징된 데이터가 중간에 변경될 경우 일관성이 깨질 수 있음.
+3. 예외 처리: 페이지 번호가 범위를 벗어나는 경우 예외 처리 필요.
+
+---
+# Spring Security
+- gradle에 의존성 implementation `'org.springframework.boot:spring-boot-starter-security'` 이거 추가해서 
+  Spring security 사용
+![img_2.png](img_2.png)
+- REST API 사용 이전에 security 단계 선행
