@@ -5,12 +5,12 @@ Spring security 사용
 - REST API 사용 이전에 security 단계 선행
 
 ### Spring Security 개요
-
+![img.png](img.png)
 Spring Security는 스프링 프레임워크의 강력하고 확장 가능한 보안 프레임워크
 
 
 #### 주요 기능
-
+![img_1.png](img_1.png)
 1. 인증 (Authentication):
 - 사용자가 누구인지 확인하는 과정
 - 사용자 이름과 비밀번호를 통해 이루어짐
@@ -31,7 +31,7 @@ Spring Security는 스프링 프레임워크의 강력하고 확장 가능한 �
 - 다양한 보안 요구 사항에 맞게 확장 및 커스터마이징 가능
 
 ### Spring Security의 인증 (Authentication)
-
+![img_2.png](img_2.png)
 인증은 사용자가 누구인지 확인하는 과정입니다. 일반적으로 사용자 이름과 비밀번호를 통해 이루어지며, 올바른 자격 증명을 제공하면 사용자가 시스템에 접근할 수 있습니다.
 
 #### 인증 과정
