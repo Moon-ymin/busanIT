@@ -1,4 +1,4 @@
-package com.busanit.c12_network.retrofit
+package com.busanit.ch12_network.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

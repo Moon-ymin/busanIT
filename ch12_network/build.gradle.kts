@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.busanit.c12_network"
+    namespace = "com.busanit.ch12_network"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.busanit.c12_network"
+        applicationId = "com.busanit.ch12_network"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -37,7 +37,10 @@ android {
 }
 
 dependencies {
-    // retrofit 의존성 추가
+    // Glide 의존성 추가
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+// retrofit 의존성 추가
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
@@ -49,4 +52,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

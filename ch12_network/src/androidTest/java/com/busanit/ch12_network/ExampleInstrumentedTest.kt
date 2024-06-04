@@ -1,4 +1,4 @@
-package com.busanit.c12_network
+package com.busanit.ch12_network
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

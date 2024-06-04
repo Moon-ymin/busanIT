@@ -1,4 +1,4 @@
-package com.busanit.c12_network
+package com.busanit.ch12_network
 
 import org.junit.Test
 
