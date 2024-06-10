@@ -48,7 +48,8 @@ public class SecurityConfig {
                 // HTTP 요청에 대한 권한 설정
                 .authorizeRequests(auth -> auth
                         // 해당 패턴에 대해서는 권한 허용
-                        .requestMatchers("/test", "/register", "/auth", "/jwt/**").permitAll()
+                        .requestMatchers("/test", "/register", "/auth", "/jwt/**",
+                                "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                         // 그 외 모든 요청에 대해서 인증이 필요함
                         .anyRequest().authenticated()
                 )
