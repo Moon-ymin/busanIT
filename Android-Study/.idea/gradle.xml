@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/ch01_layout" />
+            <option value="$PROJECT_DIR$/ch02_event" />
+            <option value="$PROJECT_DIR$/ch03_resource" />
+            <option value="$PROJECT_DIR$/ch04_permission" />
+            <option value="$PROJECT_DIR$/ch05_dialog" />
+            <option value="$PROJECT_DIR$/ch06_notification" />
+            <option value="$PROJECT_DIR$/ch07_appbar" />
+            <option value="$PROJECT_DIR$/ch08_activity" />
+            <option value="$PROJECT_DIR$/ch08_activity/ex01" />
+            <option value="$PROJECT_DIR$/ch09_recycler_view" />
+            <option value="$PROJECT_DIR$/ch10_fragment" />
+            <option value="$PROJECT_DIR$/ch11_persistence" />
+            <option value="$PROJECT_DIR$/ch12_network" />
+            <option value="$PROJECT_DIR$/ch13_login" />
+            <option value="$PROJECT_DIR$/myapplication" />
+          </set>
+        </option>
+        <option name="resolveExternalAnnotations" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
